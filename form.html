@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+
+<head>
+
+  <title>Contact V4</title>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css"
+
+    href="https://colorlib.com/etc/cf/ContactFrom_v4/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" type="text/css" href="https://colorlib.com/etc/cf/ContactFrom_v4/css/main.css">
+
+    <script src="https://kit.fontawesome.com/6ff5af2422.js" crossorigin="anonymous"></script>
+
+  <style>
+
+    /* Additional CSS for loader and thanks page */
+
+    #loaderContainer {
+
+      display: none;
+
+      position: fixed;
+
+      left: 0;
+
+      top: 0;
+
+      width: 100%;
+
+      height: 100%;
+
+      background-color: rgba(0, 0, 0, 0.5);
+
+      z-index: 9999;
+
+    }
+
+
+
+    #loader {
+
+      position: absolute;
+
+      left: 50%;
+
+      top: 50%;
+
+      transform: translate(-50%, -50%);
+
+      color: white;
+
+      text-align: center;
+
+    }
+
+
+
+    #loader .spinner {
+
+      border: 4px solid rgba(255, 255, 255, 0.3);
+
+      border-radius: 50%;
+
+      border-top: 4px solid #fff;
+
+      width: 40px;
+
+      height: 40px;
+
+      animation: spin 1s linear infinite;
+
+    }
+
+
+
+    @keyframes spin {
+
+      0% {
+
+        transform: rotate(0deg);
+
+      }
+
+
+
+      100% {
+
+        transform: rotate(360deg);
+
+      }
+
+    }
+
+
+
+    #thanksPageContainer {
+
+      display: none;
+
+      position: fixed;
+
+      left: 50%;
+
+      top: 50%;
+
+      max-width: 120%;
+
+      transform: translate(-50%, -50%);
+
+      padding: 20px;
+
+      background-color: white;
+
+      border: 2px solid #ccc;
+
+      border-radius: 5px;
+
+      z-index: 9999;
+
+    }
+
+
+
+    #thanksPage {
+
+      text-align: center;
+
+    }
+
+
+
+    /* Additional CSS for validation messages */
+
+    .validation-message {
+
+      color: red;
+
+      font-size: 14px;
+
+    }
+
+
+
+    .wrap-input100.input100-select {
+
+      position: relative;
+
+      display: inline-block;
+
+      width: 100%;
+
+    }
+
+
+
+    .label-input100 {
+
+      font-family: 'Poppins', sans-serif;
+
+      font-size: 15px;
+
+      color: #555555;
+
+      line-height: 1.2;
+
+    }
+
+
+
+    .input100-select::after {
+
+      content: '\f107';
+
+      margin-top: 12px;
+
+      font-family: 'FontAwesome';
+
+      position: absolute;
+
+      top: 50%;
+
+      right: 15px;
+
+      transform: translateY(-50%);
+
+      pointer-events: none;
+
+    }
+
+
+
+    .selection-2 {
+
+      width: 100%;
+
+      height: 40px;
+
+      border: none;
+
+      outline-color: #2fa30b;
+
+      background: transparent;
+
+      padding: 0 15px;
+
+      font-size: 17px;
+
+      color: #2f8a13;
+
+      appearance: none;
+
+      -webkit-appearance: none;
+
+      -moz-appearance: none;
+
+      cursor: pointer;
+
+    }
+
+
+
+    .selection-2:focus {
+
+      outline-color: 2px solid #3498db;
+
+    }
+
+
+
+    .selection-2 option {
+
+      font-size: 15px;
+
+      background-color: #f8f9fa;
+
+      color: #2f8a13;
+
+    }
+
+
+
+    .selection-2 option:hover {
+
+      background-color: #e9ecef;
+
+    }
+
+
+
+    .label-input100 {
+
+      color: #000;
+
+      font-size: 15px;
+
+    }
+
+
+
+    .input100 {
+
+      color: #2f8a13;
+
+    }
+
+
+
+    .wrap-contact100 {
+
+      box-shadow: 0 0 10px 0 #444;
+
+    }
+
+
+
+    /* Additional CSS for confetti */
+
+    canvas {
+
+      position: absolute;
+
+      top: 0;
+
+      left: 0;
+
+      pointer-events: none;
+
+      z-index: 99999;
+
+    }
+
+    
+
+    .contact-container {
+
+      width: 380px;
+
+      margin-top: 15px;
+
+      background: #fff;
+
+      padding: 20px;
+
+      border: 1px solid #ccc;
+
+      border-radius: 5px;
+
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    }
+
+     .contact-contain {
+
+      width: 230px;
+
+      margin-top: 15px;
+
+      background: #fff;
+
+      padding: 20px;
+
+      border: 1px solid #ccc;
+
+      border-radius: 5px;
+
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    }
+
+    
+
+    .flex {
+
+      display: flex;
+
+      align-items: center;
+
+    }
+
+    .copy-btn {
+
+      cursor: pointer;
+
+      color: #000;
+
+      border: none;
+
+      border-radius: 5px;
+
+      padding: 8px 12px;
+
+      margin-left: 10px;
+
+    }
+
+    .copy-btn:hover {
+
+      background-color: #ccc;
+
+    }
+
+  </style>
+
+</head>
+
+
+
+<body>
+
+  <!-- Loader Container -->
+
+  <div id="loaderContainer">
+
+    <div id="loader">
+
+      <div class="spinner"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- Thanks Page Container -->
+
+  <div id="thanksPageContainer">
+
+    <div id="thanksPage">
+
+      <div class="container-contact100">
+
+        <div class="wrap-contact100">
+
+          <span class="contact100-form-title">Thank You!</span>
+
+          <i class="fa fa-check-circle fa-3x" style="color: green;"></i>
+
+          <div class="wrap-input100 validate-input" data-validate="Name is required">
+
+            <p class="label-input100" style="font-size: 18px;">Your details have been submitted successfully.</p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- Main Contact Form -->
+
+  <div class="container-contact100" id="main">
+
+    <div class="wrap-contact100" style="margin-top: 20px">
+
+      <form class="contact100-form validate-form" id="contact-form">
+
+        <span class="contact100-form-title">Hello!</span>
+
+
+
+        <!-- Form fields go here -->
+
+        <!-- Full Name -->
+
+        <div class="wrap-input100 validate-input" data-validate="Name is required">
+
+          <span class="label-input100">Full Name *</span>
+
+          <input class="input100" type="text" name="Name" id="name" placeholder="Enter your full name">
+
+          <span class="focus-input100"></span>
+
+          <span class="validation-message" id="nameValidationMessage"></span>
+
+        </div>
+
+
+
+        <!-- Phone -->
+
+        <div class="wrap-input100 validate-input" data-validate="Valid phone number is required">
+
+          <span class="label-input100">Phone *</span>
+
+          <input class="input100" type="tel" name="Phone" id="phone" placeholder="Enter your phone number">
+
+          <span class="focus-input100"></span>
+
+          <span class="validation-message" id="phoneValidationMessage"></span>
+
+        </div>
+
+
+
+        <!-- Email -->
+
+        <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+
+          <span class="label-input100">Email *</span>
+
+          <input class="input100" type="email" name="Email" id="email" placeholder="Enter your email address">
+
+          <span class="focus-input100"></span>
+
+          <span class="validation-message" id="emailValidationMessage"></span>
+
+        </div>
+
+
+
+        <!-- Gender -->
+
+        <div class="wrap-input100 input100-select">
+
+          <span class="label-input100">Gender *</span>
+
+          <div style="margin-top: 16px;">
+
+            <select class="selection-2" name="Gender" id="gender">
+
+              <option value="" selected disabled>Select Gender</option>
+
+              <option value="Male" style="color: #2f8a13">Male</option>
+
+              <option value="Female" style="color: #2f8a13">Female</option>
+
+            </select>
+
+          </div>
+
+          <span class="focus-input100"></span>
+
+          <span class="validation-message" id="genderValidationMessage"></span>
+
+        </div>
+
+
+
+        <!-- Village -->
+
+        <div class="wrap-input100 validate-input" data-validate="Question is required">
+
+          <span class="label-input100">Village *</span>
+
+          <input class="input100" type="text" name="Village" id="question1" placeholder="Enter the village name">
+
+          <span class="focus-input100"></span>
+
+          <span class="validation-message" id="question1ValidationMessage"></span>
+
+        </div>
+
+
+
+        <!-- Pincode -->
+
+        <div class="wrap-input100 validate-input" data-validate="Question is required">
+
+          <span class="label-input100">Pincode *</span>
+
+          <input class="input100" type="text" name="Pincode" id="question2" placeholder="Enter the pincode">
+
+          <span class="focus-input100"></span>
+
+          <span class="validation-message" id="question2ValidationMessage"></span>
+
+        </div>
+
+
+
+        <!-- State -->
+
+        <div class="wrap-input100 validate-input" data-validate="Question is required">
+
+          <span class="label-input100">State *</span>
+
+          <input class="input100" type="text" name="State" id="question3" placeholder="Enter the State">
+
+          <span class="focus-input100"></span>
+
+          <span class="validation-message" id="question3ValidationMessage"></span>
+
+        </div>
+
+        <div>
+
+          <br>
+
+          
+
+          
+
+        <div class="flex">
+
+  <img src="https://i.postimg.cc/28JMH39D/payments.jpg" alt="Payment Methods" style="height: 40px; width: 120px;">
+
+  <strong id="phoneNumber" style="color: #088c16; margin-left: 10px;">+91 9347450441</strong>
+
+  <button class="copy-btn" type="button" onclick="copyToClipboard()">
+
+    <i class="fa-regular fa-clipboard"></i> copy
+
+  </button>
+
+</div>
+
+<br>
+
+<br>
+
+<div class="wrap-input100 validate-input" data-validate="Question is required">
+
+          <span class="label-input100">Transaction Id *</span>
+
+          <input class="input100" type="text" name="Transaction Id" id="question4" placeholder="Enter the Transaction Id">
+
+          <span class="focus-input100"></span>
+
+          <span class="validation-message" id="question4ValidationMessage"></span>
+
+        </div>
+
+       
+
+<br>
+
+        <!-- Submit Button -->
+
+        <div class="container-contact100-form-btn">
+
+          <div class="wrap-contact100-form-btn">
+
+            <div class="contact100-form-bgbtn"></div>
+
+            <button class="contact100-form-btn" id="submitBtn">
+
+              <span>
+
+                Submit
+
+                <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+
+              </span>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+
+    </div>
+
+     <div>
+
+  <br>
+
+
+
+<div class="contact-container">
+
+  <div>
+
+    <h2>Contact Details</h2><br>
+
+    <p>For any inquiries, please contact us:</p>
+
+  </div>
+
+  <div>
+
+    <div class="contact-contain" style="width: 360px">
+
+      <h3 style="color: #088c16">Melam Rahul</h3>
+
+      <div class="flex items-center">
+
+    <h5>Phone Number :&ensp;&ensp;&ensp;
+
+      <strong id="phoneNumber" style="color: #088c16">+91 9347450441</strong>&ensp;&ensp;<button class="copy-btn" type="button" onclick="window.location.href='tel:+919347450441'">
+
+    <i class="fa-solid fa-phone"></i>  Call
+
+  </button>
+
+      </h5>
+
+    </div></div>
+
+  </div>
+
+</div>
+
+  </div>
+
+  </div>
+
+<br>
+
+  <!-- Confetti Celebration -->
+
+  <canvas id="confettiCanvas"></canvas>
+
+
+
+  <script>
+
+    // Function to show loader
+
+    function showLoader() {
+
+      document.getElementById("loaderContainer").style.display = "block";
+
+      document.body.style.backgroundColor = "#aaa";
+
+    }
+
+
+
+    // Function to hide loader
+
+    function hideLoader() {
+
+      document.getElementById("loaderContainer").style.display = "none";
+
+      document.body.style.backgroundColor = "";
+
+    }
+
+
+
+    // Function to show thanks page
+
+    function showThanksPage() {
+
+      celeb();
+
+      document.getElementById("thanksPageContainer").style.display = "block";
+
+    }
+
+    
+
+    function copyToClipboard() {
+
+  var phoneNumber = document.getElementById("phoneNumber").innerText;
+
+  var tempInput = document.createElement("input");
+
+  tempInput.value = phoneNumber;
+
+  document.body.appendChild(tempInput);
+
+  tempInput.select();
+
+  document.execCommand("copy");
+
+  document.body.removeChild(tempInput);
+
+  
+
+  // Create message element
+
+  var message = document.createElement("div");
+
+  message.textContent = "";
+
+  message.style.position = "fixed";
+
+  message.style.bottom = "20px";
+
+  message.style.left = "50%";
+
+  message.style.transform = "translateX(-50%)";
+
+  message.style.background = "";
+
+  message.style.color = "white";
+
+  message.style.padding = "10px";
+
+  message.style.borderRadius = "5px";
+
+  message.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.1)";
+
+  message.style.zIndex = "9999";
+
+  
+
+  // Create tooltip
+
+  var tooltip = document.createElement("span");
+
+  tooltip.textContent = "";
+
+  tooltip.style.fontSize = "12px";
+
+  tooltip.style.display = "block";
+
+  tooltip.style.marginTop = "5px";
+
+  tooltip.style.textAlign = "center";
+
+  
+
+  // Append tooltip to message
+
+  message.appendChild(tooltip);
+
+  
+
+  // Append message to body
+
+  document.body.appendChild(message);
+
+  
+
+  // Remove message after 3 seconds
+
+  setTimeout(function() {
+
+    document.body.removeChild(message);
+
+  }, 3000);
+
+}
+
+
+
+    // Function to validate form fields
+
+    function validateForm() {
+
+      var name = document.getElementById("name").value;
+
+      var phone = document.getElementById("phone").value;
+
+      var email = document.getElementById("email").value;
+
+      var gender = document.getElementById("gender").value;
+
+      var question1 = document.getElementById("question1").value;
+
+      var question2 = document.getElementById("question2").value;
+
+      var question3 = document.getElementById("question3").value;
+
+      var question4 = document.getElementById("question4").value;
+
+      var isValid = true;
+
+
+
+      if (name.trim() === "") {
+
+        document.getElementById("nameValidationMessage").innerText = "Please enter your full name.";
+
+        isValid = false;
+
+      } else if (name.trim() === "" || !/^[\sa-zA-Z]{1,30}$/.test(name)) {
+
+        document.getElementById("nameValidationMessage").innerText = "Please enter a valid Name.";
+
+        isValid = false;
+
+      } else {
+
+        document.getElementById("nameValidationMessage").innerText = "";
+
+      }
+
+
+
+      if (phone.trim() === "") {
+
+        document.getElementById("phoneValidationMessage").innerText = "Please enter your phone number.";
+
+        isValid = false;
+
+      } else if (phone.trim() === "" || !/^\d{10}$/.test(phone)) {
+
+        document.getElementById("phoneValidationMessage").innerText = "Please enter the valid phone number.";
+
+        isValid = false;
+
+      }
+
+      else {
+
+        document.getElementById("phoneValidationMessage").innerText = "";
+
+      }
+
+
+
+      if (email.trim() === "") {
+
+        document.getElementById("emailValidationMessage").innerText = "Please enter your email address.";
+
+        isValid = false;
+
+      } else if (!email.includes("@") || !email.endsWith(".com")) {
+
+        document.getElementById("emailValidationMessage").innerText = "Please enter a valid email address.";
+
+        isValid = false;
+
+      } else {
+
+        document.getElementById("emailValidationMessage").innerText = "";
+
+      }
+
+
+
+      if (gender === "") {
+
+        document.getElementById("genderValidationMessage").innerText = "Please select your gender.";
+
+        isValid = false;
+
+      } else {
+
+        document.getElementById("genderValidationMessage").innerText = "";
+
+      }
+
+      if (question1.trim() === "") {
+
+        document.getElementById("question1ValidationMessage").innerText = "Please enter Village Name.";
+
+        isValid = false;
+
+      } else if (question1.trim() === "" || !/^[\sa-zA-Z]{1,30}$/.test(question1)) {
+
+        document.getElementById("question1ValidationMessage").innerText = "Please enter a valid  village Name.";
+
+        isValid = false;
+
+      }
+
+      else {
+
+        document.getElementById("question1ValidationMessage").innerText = "";
+
+      }
+
+      if (question2.trim() === "") {
+
+        document.getElementById("question2ValidationMessage").innerText = "Please enter the Pincode.";
+
+        isValid = false;
+
+      }
+
+      else if (question2.trim() === "" || !/^\d{6}$/.test(question2)) {
+
+        document.getElementById("question2ValidationMessage").innerText = "Please enter the Valid Pincode.";
+
+        isValid = false;
+
+      } else {
+
+        document.getElementById("question2ValidationMessage").innerText = "";
+
+      }
+
+      if (question3.trim() === "") {
+
+        document.getElementById("question3ValidationMessage").innerText = "Please enter the State.";
+
+        isValid = false;
+
+      } else if (question3.trim() === "" || !/^[\sa-zA-Z]{1,30}$/.test(question3)) {
+
+        document.getElementById("question3ValidationMessage").innerText = "Please enter a valid  State.";
+
+        isValid = false;
+
+      }
+
+      else {
+
+        document.getElementById("question3ValidationMessage").innerText = "";
+
+      }
+
+      if (question4.trim() === "") {
+
+        document.getElementById("question4ValidationMessage").innerText = "Please enter Transaction Id.";
+
+        isValid = false;
+
+      }
+
+      else {
+
+        document.getElementById("question4ValidationMessage").innerText = "";
+
+      }
+
+      return isValid;
+
+    }
+
+
+
+/*  else if (question4.trim() === "" || !/^[a-zA-Z0-9]{10,}$/.test(question4.trim())) {
+
+        document.getElementById("question4ValidationMessage").innerText = "Please enter a Valid Transaction Id.";
+
+        isValid = false;
+
+      }
+
+*/
+
+
+
+
+
+    // Function to submit form data
+
+    function submitForm() {
+
+      var form = document.getElementById("contact-form");
+
+      var formData = new FormData(form);
+
+      fetch("https://script.google.com/macros/s/AKfycbxIX7-XTZzeWhTvX-kbEm6QyLpy9YzSV6wRpauPxHt6ZSXqj26PU5hiJSLRj_idyVIfjA/exec", {
+
+        method: "POST",
+
+        body: formData
+
+      })
+
+        .then(response => {
+
+          hideLoader();
+
+          document.getElementById("main").style.display = "none";
+
+          showThanksPage();
+
+        })
+
+        .catch(error => {
+
+          console.error('Error:', error);
+
+          // Handle errors here
+
+        });
+
+    }
+
+
+
+    // Event listener for form submission
+
+    document.getElementById("submitBtn").addEventListener("click", function (event) {
+
+      event.preventDefault();
+
+      if (validateForm()) {
+
+        showLoader();
+
+        submitForm();
+
+      }
+
+    });
+
+
+
+    // Event listeners for input fields to clear validation messages
+
+    document.getElementById("name").addEventListener("input", function () {
+
+      document.getElementById("nameValidationMessage").innerText = "";
+
+    });
+
+
+
+    document.getElementById("phone").addEventListener("input", function () {
+
+      document.getElementById("phoneValidationMessage").innerText = "";
+
+    });
+
+
+
+    document.getElementById("email").addEventListener("input", function () {
+
+      document.getElementById("emailValidationMessage").innerText = "";
+
+    });
+
+
+
+    document.getElementById("gender").addEventListener("change", function () {
+
+      document.getElementById("genderValidationMessage").innerText = "";
+
+    });
+
+
+
+    document.getElementById("question1").addEventListener("input", function () {
+
+      document.getElementById("question1ValidationMessage").innerText = "";
+
+    });
+
+
+
+    document.getElementById("question2").addEventListener("input", function () {
+
+      document.getElementById("question2ValidationMessage").innerText = "";
+
+    });
+
+
+
+    document.getElementById("question3").addEventListener("input", function () {
+
+      document.getElementById("question3ValidationMessage").innerText = "";
+
+    });
+
+    
+
+    document.getElementById("question4").addEventListener("input", function () {
+
+      document.getElementById("question4ValidationMessage").innerText = "";
+
+    });
+
+    
+
+    function celeb() {
+
+    class Progress {
+
+  constructor(param = {}) {
+
+    this.timestamp        = null;
+
+    this.duration         = param.duration || Progress.CONST.DURATION;
+
+    this.progress         = 0;
+
+    this.delta            = 0;
+
+    this.isLoop           = !!param.isLoop;
+
+
+
+    this.reset();
+
+  }
+
+
+
+  static get CONST() {
+
+    return {
+
+      DURATION : 900
+
+    };
+
+  }
+
+
+
+  reset() {
+
+    this.timestamp = null;
+
+  }
+
+
+
+  start(now) {
+
+    this.timestamp = now;
+
+  }
+
+
+
+  tick(now) {
+
+    if (this.timestamp) {
+
+      this.delta    = now - this.timestamp;
+
+      this.progress = Math.min(this.delta / this.duration, 1);
+
+
+
+      if (this.progress >= 1 && this.isLoop) {
+
+        this.start(now);
+
+      }
+
+
+
+      return this.progress;
+
+    } else {
+
+      return 0;
+
+    }
+
+  }
+
+}
+
+
+
+class Confetti {
+
+  constructor(param) {
+
+    this.parent         = param.elm || document.body;
+
+    this.canvas         = document.createElement("canvas");
+
+    this.ctx            = this.canvas.getContext("2d");
+
+    this.width          = param.width  || this.parent.offsetWidth;
+
+    this.height         = param.height || this.parent.offsetHeight;
+
+    this.length         = param.length || Confetti.CONST.PAPER_LENGTH;
+
+    this.yRange         = param.yRange || this.height * 2;
+
+    this.progress       = new Progress({
+
+      duration : param.duration,
+
+      isLoop   : true
+
+    });
+
+    this.rotationRange  = typeof param.rotationRange === "number" ? param.rotationRange
+
+                                                                   : 10;
+
+    this.speedRange     = typeof param.speedRange     === "number" ? param.speedRange
+
+                                                                   : 10;
+
+    this.sprites        = [];
+
+
+
+    this.canvas.style.cssText = [
+
+      "display: block",
+
+      "position: absolute",
+
+      "top: 0",
+
+      "left: 0",
+
+      "pointer-events: none"
+
+    ].join(";");
+
+
+
+    this.render = this.render.bind(this);
+
+
+
+    this.build();
+
+
+
+    this.parent.appendChild(this.canvas);
+
+    this.progress.start(performance.now());
+
+
+
+    requestAnimationFrame(this.render);
+
+  }
+
+
+
+  static get CONST() {
+
+    return {
+
+        SPRITE_WIDTH  : 9,
+
+        SPRITE_HEIGHT : 16,
+
+        PAPER_LENGTH  : 100,
+
+        DURATION      : 8000,
+
+        ROTATION_RATE : 50,
+
+        COLORS        : [
+
+          "#EF5350",
+
+          "#EC407A",
+
+          "#AB47BC",
+
+          "#7E57C2",
+
+          "#5C6BC0",
+
+          "#42A5F5",
+
+          "#29B6F6",
+
+          "#26C6DA",
+
+          "#26A69A",
+
+          "#66BB6A",
+
+          "#9CCC65",
+
+          "#D4E157",
+
+          "#FFEE58",
+
+          "#FFCA28",
+
+          "#FFA726",
+
+          "#FF7043",
+
+          "#8D6E63",
+
+          "#BDBDBD",
+
+          "#78909C"
+
+        ]
+
+    };
+
+  }
+
+
+
+  build() {
+
+    for (let i = 0; i < this.length; ++i) {
+
+      let canvas = document.createElement("canvas"),
+
+          ctx    = canvas.getContext("2d");
+
+
+
+      canvas.width  = Confetti.CONST.SPRITE_WIDTH;
+
+      canvas.height = Confetti.CONST.SPRITE_HEIGHT;
+
+
+
+      canvas.position = {
+
+        initX : Math.random() * this.width,
+
+        initY : -canvas.height - Math.random() * this.yRange
+
+      };
+
+
+
+      canvas.rotation = (this.rotationRange / 2) - Math.random() * this.rotationRange;
+
+      canvas.speed    = (this.speedRange / 2) + Math.random() * (this.speedRange / 2);
+
+
+
+      ctx.save();
+
+        ctx.fillStyle = Confetti.CONST.COLORS[(Math.random() * Confetti.CONST.COLORS.length) | 0];
+
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.restore();
+
+
+
+      this.sprites.push(canvas);
+
+    }
+
+  }
+
+
+
+  render(now) {
+
+    let progress = this.progress.tick(now);
+
+
+
+    this.canvas.width  = this.width;
+
+    this.canvas.height = this.height;
+
+
+
+    for (let i = 0; i < this.length; ++i) {
+
+      this.ctx.save();
+
+        this.ctx.translate(
+
+          this.sprites[i].position.initX + this.sprites[i].rotation * Confetti.CONST.ROTATION_RATE * progress,
+
+          this.sprites[i].position.initY + progress * (this.height + this.yRange)
+
+        );
+
+        this.ctx.rotate(this.sprites[i].rotation);
+
+        this.ctx.drawImage(
+
+          this.sprites[i],
+
+          -Confetti.CONST.SPRITE_WIDTH * Math.abs(Math.sin(progress * Math.PI * 2 * this.sprites[i].speed)) / 2,
+
+          -Confetti.CONST.SPRITE_HEIGHT / 2,
+
+          Confetti.CONST.SPRITE_WIDTH * Math.abs(Math.sin(progress * Math.PI * 2 * this.sprites[i].speed)),
+
+          Confetti.CONST.SPRITE_HEIGHT
+
+        );
+
+      this.ctx.restore();
+
+    }
+
+
+
+    requestAnimationFrame(this.render);
+
+  }
+
+}
+
+
+
+(() => {
+
+  const DURATION = 8000,
+
+        LENGTH   = 120;
+
+
+
+  new Confetti({
+
+    width    : window.innerWidth,
+
+    height   : window.innerHeight,
+
+    length   : LENGTH,
+
+    duration : DURATION
+
+  });
+
+
+
+  setTimeout(() => {
+
+    new Confetti({
+
+      width    : window.innerWidth,
+
+      height   : window.innerHeight,
+
+      length   : LENGTH,
+
+      duration : DURATION
+
+    });
+
+  }, DURATION / 2);
+
+})();
+
+
+
+}
+
+
+
+
+
+    window.onload = function () {
+
+            const anchorTags = document.querySelectorAll('a'); anchorTags.forEach(function (a) { a.addEventListener('click', function (ev) { ev.preventDefault(); }) }); const dropdownEl = document.querySelector('[data-dropdown-toggle]'); if (dropdownEl) { dropdownEl.click(); } const modalEl = document.querySelector('[data-modal-toggle]'); if (modalEl) { modalEl.click(); } const dateRangePickerEl = document.querySelector('[data-rangepicker] input'); if (dateRangePickerEl) { dateRangePickerEl.focus(); } const drawerEl = document.querySelector('[data-drawer-show]'); if (drawerEl) { drawerEl.click(); }
+
+            const clipboard = FlowbiteInstances.getInstance('CopyClipboard', 'contact-details');
+
+            const tooltip = FlowbiteInstances.getInstance('Tooltip', 'tooltip-contact-details');
+
+
+
+            const $defaultIcon = document.getElementById('default-icon-contact-details');
+
+            const $successIcon = document.getElementById('success-icon-contact-details');
+
+
+
+            const $defaultTooltipMessage = document.getElementById('default-tooltip-message-contact-details');
+
+            const $successTooltipMessage = document.getElementById('success-tooltip-message-contact-details');
+
+
+
+            clipboard.updateOnCopyCallback((clipboard) => {
+
+                showSuccess();
+
+
+
+                // reset to default state
+
+                setTimeout(() => {
+
+                    resetToDefault();
+
+                }, 2000);
+
+            })
+
+
+
+            const showSuccess = () => {
+
+                $defaultIcon.classList.add('hidden');
+
+                $successIcon.classList.remove('hidden');
+
+                $defaultTooltipMessage.classList.add('hidden');
+
+                $successTooltipMessage.classList.remove('hidden');
+
+                tooltip.show();
+
+            }
+
+
+
+            const resetToDefault = () => {
+
+                $defaultIcon.classList.remove('hidden');
+
+                $successIcon.classList.add('hidden');
+
+                $defaultTooltipMessage.classList.remove('hidden');
+
+                $successTooltipMessage.classList.add('hidden');
+
+                tooltip.hide();
+
+            }
+
+        }</script>
+
+</body>
+
+
+
+              </html>
