@@ -1,0 +1,614 @@
+<html lang="en" dir="ltr">
+<head>
+     <meta charset="UTF-8">
+    <title>Church at Guntur | Welcome to Our Church</title>
+    <meta name="description" content="Welcome to Church at Guntur, where we gather to worship, pray, and grow together in faith.">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="church, Guntur, worship, faith, prayer, community, church at guntur, guntur church, church in guntur">
+    <link rel="canonical" href="https://i5.rf.gd/church.php">
+    <meta property="og:site_name" content="Church at Guntur">
+    <meta property="og:title" content="Church at Guntur | Welcome to Our Church">
+    <meta property="og:description" content="Welcome to Church at Guntur, where we gather to worship, pray, and grow together in faith.">
+    <meta property="og:url" content="https://i5.rf.gd/church.php">
+    <meta property="og:image" content="https://photos.google.com/photo/AF1QipOdJMzcHOMCivfeoLwYpFhVcNNYpXYVOwCSEYwC">
+    <meta property="og:image:width" content="192">
+    <meta property="og:image:height" content="192">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Church at Guntur | Welcome to Our Church">
+    <meta name="twitter:description" content="Welcome to Church at Guntur, where we gather to worship, pray, and grow together in faith.">
+    <meta name="twitter:image" content="https://photos.google.com/photo/AF1QipOdJMzcHOMCivfeoLwYpFhVcNNYpXYVOwCSEYwC">
+    <meta name="twitter:url" content="https://i5.rf.gd/church.php">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://photos.google.com/photo/AF1QipOdJMzcHOMCivfeoLwYpFhVcNNYpXYVOwCSEYwC">
+    <meta name="author" content="Church at Guntur">
+    <meta name="content-language" content="en">
+    <meta name="noarchive" content="">
+    <meta http-equiv="expires" content="Thu, 31 Dec 2099 23:59:59 GMT">
+    <meta name="pragma" content="no-cache">
+    <meta name="cache-control" content="no-cache, no-store, must-revalidate">
+
+    <!-- Structured Data Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Church",
+      "name": "Church at Guntur",
+      "description": "Welcome to Church at Guntur, where we gather to worship, pray, and grow together in faith.",
+      "url": "https://i5.rf.gd/church.php",
+      "image": "https://photos.google.com/photo/AF1QipOdJMzcHOMCivfeoLwYpFhVcNNYpXYVOwCSEYwC",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Guntur",
+        "addressRegion": "Andhra Pradesh",
+        "addressCountry": "India"
+      }
+    }
+    </script>
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        /* Align content to the bottom */
+        background: #7d2ae8;
+        margin-bottom: 10px;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 25px;
+        /* Fixed 10px above the bottom */
+        left: 50%;
+        /* Center horizontally */
+        transform: translateX(-50%);
+        /* Center horizontally */
+        height: 55px;
+        /* Reduced height */
+        width: 260px;
+        /* Reduced width */
+        background: #fff;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        /* Reduced shadow */
+    }
+
+    .navbar ul {
+        position: relative;
+        display: flex;
+    }
+
+    .navbar ul li {
+        position: relative;
+        list-style-type: none;
+    }
+
+    .navbar ul li a {
+        position: relative;
+        height: 60px;
+        /* Reduced height */
+        width: 60px;
+        /* Reduced width */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+    }
+
+    .navbar ul li a i {
+        position: absolute;
+        font-size: 28px;
+        /* Reduced font size */
+        color: #7d2ae8;
+    }
+
+    ul li a i.activeIcon {
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.6s ease;
+        transition-delay: 0.1s;
+    }
+
+    .navbar ul li.active a i {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .navbar ul .indicator {
+        position: absolute;
+        bottom: -15px;
+        /* Reduced position */
+        left: 16px;
+        /* Adjusted position */
+        height: 25px;
+        /* Reduced height */
+        width: 25px;
+        /* Reduced width */
+        background: #7d2ae8;
+        border-radius: 50%;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    ul .indicator::before,
+    ul .indicator::after {
+        content: "";
+        position: absolute;
+        bottom: 50%;
+        height: 15px;
+        /* Reduced height */
+        width: 15px;
+        /* Reduced width */
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 7px 0 #7d2ae8;
+    }
+
+    ul .indicator::before {
+        left: -10px;
+        /* Adjusted position */
+    }
+
+    ul .indicator::after {
+        right: -10px;
+        /* Adjusted position */
+    }
+
+    section {
+        width: 100%;
+        display: none;
+        text-align: center;
+        padding: 20px;
+    }
+
+    #home {
+        height: 520px;
+        width: 95%;
+        /* Adjusted width */
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        position: fixed;
+        top: 100px;
+        /* Adjust top position */
+        left: 10px;
+        right: 10px;
+        /* Adjust left position */
+    }
+
+    #bible {
+        height: 722px;
+        width: 95%;
+        /* Adjusted width */
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        position: fixed;
+        top: 100px;
+        /* Adjust top position */
+        left: 10px;
+        /* Adjust left position */
+    }
+
+    #songs {
+        height: 722px;
+        width: 95%;
+        /* Adjusted width */
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        position: fixed;
+        top: 100px;
+        /* Adjust top position */
+        left: 10px;
+        /* Adjust left position */
+    }
+
+    #events {
+        height: 722px;
+        width: 95%;
+        /* Adjusted width */
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        position: fixed;
+        top: 100px;
+        /* Adjust top position */
+        left: 10px;
+        /* Adjust left position */
+    }
+
+    #events h3 {
+        text-align: left;
+        color: #333;
+        /* Default text color */
+        position: relative;
+        z-index: 0;
+    }
+
+    #events h3:before {
+        content: "";
+        background: linear-gradient(45deg,
+                #ff0000,
+                #ff7300,
+                #fffb00,
+                #48ff00,
+                #00ffd5,
+                #7a00ff,
+                #ff00c8,
+                #ff0000);
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        animation: glowing-text 20s linear infinite;
+        border-radius: 10px;
+    }
+
+    @keyframes glowing-text {
+        0% {
+            background-position: 0 0;
+        }
+
+        50% {
+            background-position: 400% 0;
+        }
+
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+    #events h3:after {
+        z-index: -1;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: none;
+        /* Remove background color */
+        left: 0;
+        top: 0;
+        border-radius: 10px;
+    }
+
+    body:before {
+        content: "";
+        background: linear-gradient(45deg,
+                #ff0000,
+                #ff7300,
+                #fffb00,
+                #48ff00,
+                #00ffd5,
+                #7a00ff,
+                #ff00c8,
+                #ff0000);
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        animation: glowing-text 20s linear infinite;
+        border-radius: 10px;
+    }
+
+    @keyframes glowing-text {
+        0% {
+            background-position: 0 0;
+        }
+
+        50% {
+            background-position: 400% 0;
+        }
+
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+    body:after {
+        z-index: -1;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: none;
+        /* Remove background color */
+        left: 0;
+        top: 0;
+        border-radius: 10px;
+    }
+
+    #profile {
+        height: 722px;
+        width: 95%;
+        /* Adjusted width */
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        position: fixed;
+        top: 10px;
+        /* Adjust top position */
+        left: 10px;
+        /* Adjust left position */
+    }
+
+    section.active {
+        display: block;
+    }
+
+    /* ############## Frame Style ####################### */
+    .iframe-container {
+        position: relative;
+        width: 111%;
+        height: 100%;
+        top: -20px;
+        overflow: hidden;
+        left: -20px;
+
+    }
+
+    .iframe-container::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        color: #fff;
+        height: 0px;
+        /* Adjust height for top masking */
+        background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, #ffffff 100%);
+        pointer-events: none;
+        top: 0;
+        /* Adjust top position for top masking */
+    }
+
+    .iframe-container::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 0px;
+        /* Adjust height for bottom masking */
+        background: linear-gradient(to top, rgb(255, 255, 255) 0%, #ffffff 100%);
+        pointer-events: none;
+        bottom: -200px;
+        /* Adjust bottom position for bottom masking */
+    }
+
+    iframe {
+        width: 100%;
+        height: 100%;
+        /* Adjust height to exclude top and bottom masking heights */
+        border-radius: 20px;
+    }
+
+    /* ################ CSS for Buttons ########### */
+    .button-85 {
+        padding: 0.5em 2em;
+        /* Increase padding to adjust height and width */
+        font-size: 24px;
+        /* Adjust font size as needed */
+        border: none;
+        outline: none;
+        color: rgb(255, 255, 255);
+        background: #111;
+        cursor: pointer;
+        position: relative;
+        z-index: 0;
+        border-radius: 10px;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+
+    .button-85:before {
+        content: "";
+        background: linear-gradient(45deg,
+                #ff0000,
+                #ff7300,
+                #fffb00,
+                #48ff00,
+                #00ffd5,
+                #002bff,
+                #7a00ff,
+                #ff00c8,
+                #ff0000);
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        animation: glowing-button-85 20s linear infinite;
+        transition: opacity 0.3s ease-in-out;
+        border-radius: 10px;
+    }
+
+    @keyframes glowing-button-85 {
+        0% {
+            background-position: 0 0;
+        }
+
+        50% {
+            background-position: 400% 0;
+        }
+
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+    .button-85:after {
+        z-index: -1;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #7d2ae8;
+        left: 0;
+        top: 0;
+        border-radius: 10px;
+    }
+
+    .center-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style></head>
+
+
+<body>
+    <div>
+        <section id="home" class="active">
+            <a href="https://freeimage.host/"><img src="https://iili.io/JGcfIwP.png" alt="Church" border="0"></a>
+            <br><br><br>
+            <button class="button-85" role="button" onclick="window.location.href='https://meet.google.com/mjd-kxbn-hri';">Youth Meeting</button>
+            <br><br><br>
+            <button class="button-85" role="button" onclick="window.location.href='https://meet.google.com/jpt-bzmh-vpt';">Sisters Meet</button>
+            <br><br><br>
+            <button class="button-85" role="button" onclick="window.location.href='http://meet.google.com/sta-bfsa-nbe';">Church Meeting</button>
+    </section></div>
+    
+    <section id="bible" class="">
+        <div class="iframe-container">
+            <iframe src="https://mrahul.nicepage.io/Page-three.html" style="width: 100%; height: 100%; border-radius: 20p; border-color: #fff;"></iframe>
+        </div>
+    </section>
+    <section id="songs" class="">
+        <div class="iframe-container">
+            <iframe src="https://mrahul.nicepage.io/page-two.html" style="width: 100%; height: 100%; border-radius: 20p; border-radius: 20px; border-color: #fff;"></iframe>
+        </div>
+    </section>
+    <section id="events" class="">
+        <h1>Church Weekly Programs</h1>
+        <br><br><br>
+        <h3><i>Sunday Worship : 10:00 am</i></h3><br>
+        <h3><i>Cottage Meeting : Every Month 1st Sunday</i></h3><br>
+        <h3><i>Gospal Meeting : Every Month 3rd Sunday</i></h3><br>
+        <h3><i>Youth Meeting : Every Tuesday : 8 pm</i></h3><br>
+        <h3><i>Sisters Meet : Every Wednesday : 8 pm</i></h3><br>
+        <h3><i>Preparation Prayer : Every Saturday : 8 pm</i></h3>
+    </section>
+    <!--<section id="profile" class="">
+        <h1>Profile</h1><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <h3>This site was under maintainance</h3><br>
+        <h4>Check Back Later</h4>
+    </section>-->
+    
+    <div class="navbar">
+        <ul>
+            <li class="active">
+                <a href="#">
+                    <i class="bx bx-church icon"></i>
+                    <i class="bx bxs-church activeIcon"></i>
+                </a>
+            </li>
+            <li class="">
+                <a href="#">
+                    <i class="bx bx-book-reader icon"></i>
+                    <i class="bx bxs-book-reader activeIcon"></i>
+                </a>
+            </li>
+            <li class="">
+                <a href="#">
+                    <i class="bx bx-music icon"></i>
+                    <i class="bx bxs-music activeIcon"></i>
+                </a>
+            </li>
+            <li class="">
+                <a href="#">
+                    <i class="bx bx-notepad icon"></i>
+                    <i class="bx bxs-notepad activeIcon"></i>
+                </a>
+            </li>
+          <!--  <li class="">
+                <a href="#">
+                    <i class="bx bx-user icon"></i>
+                    <i class="bx bxs-user activeIcon"></i>
+                </a>
+            </li>-->
+            <div class="indicator" style="transform: translateX(calc(0px));"></div>
+        </ul>
+    </div>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                .then(function(registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('ServiceWorker registration failed: ', error);
+                });
+            });
+        }
+        const navBar = document.querySelector(".navbar");
+        const allLi = document.querySelectorAll("li");
+
+        allLi.forEach((li, index) => {
+            li.addEventListener("click", e => {
+                e.preventDefault(); //preventing from submitting
+                navBar.querySelector(".active").classList.remove("active");
+                li.classList.add("active");
+
+                const indicator = document.querySelector(".indicator");
+                const liWidth = allLi[0].offsetWidth; // Get the width of the first list item
+                indicator.style.transform = `translateX(calc(${index * liWidth}px))`;
+                const sections = document.querySelectorAll("section");
+                sections.forEach(section => {
+                    section.classList.remove("active");
+                });
+                sections[index].classList.add("active");
+            });
+        });
+        /* Songs Script */
+        function openSearch() {
+            var iframe = document.getElementById('frame');
+            iframe.classList.remove('masked-iframe');
+            iframe.classList.add('masked-iframee');
+            iframe.src = "https://waytochurch.com/lyrics/song?"; // Set the new src if needed
+            iframe.style.top = "-82px"; // Adjust the top position
+        }
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                .then(function(registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('ServiceWorker registration failed: ', error);
+                });
+            });
+        }
+    </script>
+
+
+</body></html>
