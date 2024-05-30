@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Church At Guntur</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background: linear-gradient(to right, #266905, #266905);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            letter-spacing: 2px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+    background: #313c7e;
+    color: #fff;
+    height: 35px; /* Adjust the height */
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.action-names {
+    display: flex;
+    justify-content: space-around;
+    padding: 8px;
+    margin-top: -10px;
+    border-bottom: 3px solid transparent;
+    overflow-x: auto;
+}
+
+.action-name {
+    color: #fff;
+    font-size: 24px;
+    padding: 8px 15px;
+    cursor: pointer;
+    margin-top: -10px;
+    transition: all 0.3s ease;
+    border-right: 1.5px solid #fff;
+    position: relative; /* Add position relative */
+}
+
+.action-name:last-child {
+    border-right: none;
+}
+
+.action-name:hover, .action-name.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-bottom: 3px solid #FF5C6D;
+}
+
+.action-name::after { /* Add this to create the white line */
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 1px;
+    background-color: #fff;
+}
+
+        .content {
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            border: 5px solid #197afe;
+            margin: 20px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .song-link {
+            display: block;
+            color: #266905;
+            font-size: 18px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        .song-link:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        Church At Guntur
+    </div>
+    <nav>
+        <div class="action-names">
+            <span class="action-name active" onclick="showScreen('అ')">అ</span>
+            <span class="action-name" onclick="showScreen('ఆ')">ఆ</span>
+            <span class="action-name" onclick="showScreen('ఇ')">ఇ</span>
+            <span class="action-name" onclick="showScreen('ఈ')">ఈ</span>
+            <span class="action-name" onclick="showScreen('ఉ')">ఉ</span>
+            <span class="action-name" onclick="showScreen('ఊ')">ఊ</span>
+            <span class="action-name" onclick="showScreen('ఋ')">ఋ</span>
+            <span class="action-name" onclick="showScreen('ఎ')">ఎ</span>
+            <span class="action-name" onclick="showScreen('ఏ')">ఏ</span>
+            <span class="action-name" onclick="showScreen('ఐ')">ఐ</span>
+            <span class="action-name" onclick="showScreen('ఒ')">ఒ</span>
+            <span class="action-name" onclick="showScreen('ఓ')">ఓ</span>
+            <span class="action-name" onclick="showScreen('ఔ')">ఔ</span>
+            <span class="action-name" onclick="showScreen('క')">క</span>
+            <span class="action-name" onclick="showScreen('ఖ')">ఖ</span>
+            <span class="action-name" onclick="showScreen('గ')">గ</span>
+            <span class="action-name" onclick="showScreen('ఘ')">ఘ</span>
+            <span class="action-name" onclick="showScreen('ఙ')">ఙ</span>
+            <span class="action-name" onclick="showScreen('చ')">చ</span>
+            <span class="action-name" onclick="showScreen('ఛ')">ఛ</span>
+            <span class="action-name" onclick="showScreen('జ')">జ</span>
+            <span class="action-name" onclick="showScreen('ఝ')">ఝ</span>
+            <span class="action-name" onclick="showScreen('ఞ')">ఞ</span>
+            <span class="action-name" onclick="showScreen('ట')">ట</span>
+            <span class="action-name" onclick="showScreen('ఠ')">ఠ</span>
+            <span class="action-name" onclick="showScreen('డ')">డ</span>
+            <span class="action-name" onclick="showScreen('ఢ')">ఢ</span>
+            <span class="action-name" onclick="showScreen('ణ')">ణ</span>
+            <span class="action-name" onclick="showScreen('త')">త</span>
+            <span class="action-name" onclick="showScreen('థ')">థ</span>
+            <span class="action-name" onclick="showScreen('ద')">ద</span>
+            <span class="action-name" onclick="showScreen('ధ')">ధ</span>
+            <span class="action-name" onclick="showScreen('న')">న</span>
+            <span class="action-name" onclick="showScreen('ప')">ప</span>
+            <span class="action-name" onclick="showScreen('ఫ')">ఫ</span>
+            <span class="action-name" onclick="showScreen('బ')">బ</span>
+            <span class="action-name" onclick="showScreen('భ')">భ</span>
+            <span class="action-name" onclick="showScreen('మ')">మ</span>
+            <span class="action-name" onclick="showScreen('య')">య</span>
+            <span class="action-name" onclick="showScreen('ర')">ర</span>
+            <span class="action-name" onclick="showScreen('ల')">ల</span>
+            <span class="action-name" onclick="showScreen('వ')">వ</span>
+            <span class="action-name" onclick="showScreen('శ')">శ</span>
+            <span class="action-name" onclick="showScreen('ష')">ష</span>
+            <span class="action-name" onclick="showScreen('స')">స</span>
+            <span class="action-name" onclick="showScreen('హ')">హ</span>
+        </div>
+    </nav>
+    <div id="అ" class="content active">
+        <a class="song-link" href="https://rahul.serv00.net">1. అంజూరపు చెట్లు పూయకుండినను</a>
+        <a class="song-link" href="song2_url.html">2. అంతా నూతనమే యేసులో</a>
+        <a class="song-link" href="song3_url.html">3. అందరి ప్రభువు ఆ యేసే</a>
+        <a class="song-link" href="song4_url.html">4. అందాల ఆశాకిరణం</a>
+        <!-- Add more song links as needed -->
+    </div>
+    <div id="ఆ" class="content">
+        <a class="song-link" href="song5_url.html">1. అంజూరపు చెట్లు పూయకుండినను</a>
+        <a class="song-link" href="song6_url.html">2. అంతా నూతనమే యేసులో</a>
+        <a class="song-link" href="song7_url.html">3. అందరి ప్రభువు ఆ యేసే</a>
+        <a class="song-link" href="song8_url.html">4. అందాల ఆశాకిరణం</a>
+        <!-- Add more song links as needed -->
+    </div>
+    <div id="ఇ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఈ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఉ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఊ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఋ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఎ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఏ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఐ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఒ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఓ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఔ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="క" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఖ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="గ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఘ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఙ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="చ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఛ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="జ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఝ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఞ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ట" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఠ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="డ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఢ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ణ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="త" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="థ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ద" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ధ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="న" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ప" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ఫ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="బ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="భ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="మ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="య" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ర" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ల" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="వ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="శ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="ష" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="స" class="content">
+        <!-- Add song links for this section -->
+    </div>
+    <div id="హ" class="content">
+        <!-- Add song links for this section -->
+    </div>
+
+    <script>
+        function showScreen(screenId) {
+            var screens = document.querySelectorAll('.content');
+            screens.forEach(function(screen) {
+                if (screen.id === screenId) {
+                    screen.classList.add('active');
+                } else {
+                    screen.classList.remove('active');
+                }
+            });
+            updateActiveButton(screenId);
+        }
+
+        function updateActiveButton(screenId) {
+            var buttons = document.querySelectorAll('.action-name');
+            buttons.forEach(function(button) {
+                if (button.textContent.trim() === screenId) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
