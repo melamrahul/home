@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telugu Songs</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;700&family=Nunito:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://jumpshare.com/res/cssm/jumpshare_1716981129.css">
     <style>
         body {
             font-family: 'Google Sans', sans-serif;
@@ -21,7 +22,7 @@
             background-color: #266905;
             overflow: hidden;
             padding: 15px;
-            height: 35px;
+            height: 60px;
             border-bottom: 3px solid #ccc;
             z-index: 1000;
         }
@@ -110,7 +111,73 @@
             font-size: 12px;
             margin-left: 10px;
         }
+
+        /* NProgress styles */
+        #nprogress {
+            pointer-events: none;
+        }
+
+        #nprogress .bar {
+            background: #29d;
+            position: fixed;
+            z-index: 1031;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+        }
+
+        #nprogress .peg {
+            display: block;
+            position: absolute;
+            right: 0;
+            width: 100px;
+            height: 100%;
+            box-shadow: 0 0 10px #29d, 0 0 5px #29d;
+            opacity: 1.0;
+            transform: rotate(3deg) translate(0, -4px);
+        }
+
+        #nprogress .spinner {
+            display: block;
+            position: fixed;
+            z-index: 1031;
+            top: 15px;
+            right: 15px;
+        }
+
+        #nprogress .spinner-icon {
+            width: 18px;
+            height: 18px;
+            box-sizing: border-box;
+            border: solid 2px transparent;
+            border-top-color: #29d;
+            border-left-color: #29d;
+            border-radius: 50%;
+            animation: nprogress-spinner 400ms linear infinite;
+        }
+
+        .nprogress-custom-parent {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .nprogress-custom-parent #nprogress .spinner,
+        .nprogress-custom-parent #nprogress .bar {
+            position: absolute;
+        }
+
+        @keyframes nprogress-spinner {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     </style>
+    <script src="https://static.jumpshare.com/res/css/modernizr.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
 </head>
 
 <body>
@@ -130,7 +197,7 @@
                 <span id="current-time">0:00</span> / <span id="duration">0:00</span>
             </div>
         </div>
-        <audio id="audio" src="https://www.songs.com/song1.mp3" ontimeupdate="updateProgress()"></audio>
+        <audio id="audio" src="https://pouch.jumpshare.com/preview/KBNfVlG67mFBYKd5HHIzd_Qj3yLyj49zkYC9JFZQsk46ZART6plKsX3cnHdN_GiLQo4UF-XFRDy1DYu8XUQjXJjo3Y0-r2-DUs-fuPqhA4XICSbjvKJnN189szaJhs0cZ5SqY48qTsc7DknEFeUyMW6yjbN-I2pg_cnoHs_AmgI.mp3" ontimeupdate="updateProgress()"></audio>
     </div>
 
     <script>
@@ -165,6 +232,12 @@
             const secondsLeft = Math.floor(seconds % 60);
             return `${minutes}:${secondsLeft < 10 ? '0' : ''}${secondsLeft}`;
         }
+
+        // Initialize NProgress
+        NProgress.start();
+        window.addEventListener('load', () => {
+            NProgress.done();
+        });
     </script>
 </body>
 </html>
