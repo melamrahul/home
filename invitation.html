@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 Christmas Party Invitation - Dec 17</title>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Poppins:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --christmas-red: #c41e3a;
+            --christmas-green: #165b33;
+            --gold: #ffd700;
+            --snow-white: #f8f9fa;
+            --dark-text: #2c3e50;
+        }
+
+        @keyframes snowfall {
+            0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) translateX(100px) rotate(360deg); opacity: 0.3; }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold); }
+            50% { text-shadow: 0 0 20px var(--gold), 0 0 30px var(--gold), 0 0 40px var(--gold); }
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg, #0d1b2a 0%, #1b4332 50%, #0d1b2a 100%);
+            color: var(--dark-text);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Christmas Lights */
+        .christmas-lights {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            display: flex;
+            justify-content: space-around;
+            z-index: 100;
+            padding: 0 10px;
+        }
+
+        .light {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: twinkle 1.5s infinite;
+        }
+
+        .light:nth-child(1) { background: #ff0000; animation-delay: 0s; }
+        .light:nth-child(2) { background: #00ff00; animation-delay: 0.2s; }
+        .light:nth-child(3) { background: #ffd700; animation-delay: 0.4s; }
+        .light:nth-child(4) { background: #ff0000; animation-delay: 0.6s; }
+        .light:nth-child(5) { background: #00ff00; animation-delay: 0.8s; }
+        .light:nth-child(6) { background: #ffd700; animation-delay: 1s; }
+        .light:nth-child(7) { background: #ff0000; animation-delay: 1.2s; }
+
+        /* Snowflakes */
+        .snowflake {
+            position: fixed;
+            top: -10vh;
+            color: white;
+            font-size: 1.2em;
+            opacity: 0.9;
+            animation: snowfall linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+            padding-bottom: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(145deg, var(--christmas-red), #d62839);
+            padding: 40px 20px 30px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 15px 40px rgba(196, 30, 58, 0.4);
+        }
+
+        .hero::before {
+            content: '❄️';
+            position: absolute;
+            font-size: 15em;
+            opacity: 0.08;
+            top: -30px;
+            right: -30px;
+            animation: twinkle 3s infinite;
+        }
+
+        .hero-content {
+            position: relative;
+            text-align: center;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .christmas-tree {
+            font-size: 4em;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+        }
+
+        .tagline {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.4em;
+            color: var(--gold);
+            animation: glow 2s infinite;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 2.8em;
+            color: white;
+            margin: 10px 0;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+        }
+
+        .subtitle {
+            font-size: 1em;
+            color: rgba(255,255,255,0.95);
+            margin-top: 5px;
+        }
+
+        /* Countdown */
+        .countdown {
+            background: rgba(255,255,255,0.98);
+            margin: -15px 20px 20px;
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 5;
+            animation: fadeInUp 1s ease;
+        }
+
+        .countdown-title {
+            font-size: 0.8em;
+            color: var(--christmas-red);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .countdown-box {
+            text-align: center;
+        }
+
+        .countdown-num {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--christmas-green);
+            display: block;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        .countdown-label {
+            font-size: 0.7em;
+            color: #666;
+            text-transform: uppercase;
+            margin-top: 3px;
+            font-weight: 600;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 20px;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .info-card {
+            background: rgba(255,255,255,0.98);
+            border-radius: 15px;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-top: 4px solid var(--christmas-green);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-icon {
+            font-size: 2em;
+            color: var(--christmas-red);
+            margin-bottom: 8px;
+        }
+
+        .info-label {
+            font-size: 0.75em;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--dark-text);
+            line-height: 1.3;
+        }
+
+        /* Speaker Card */
+        .speaker {
+            background: linear-gradient(135deg, var(--christmas-green), #1e7e34);
+            color: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin: 0 20px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(22, 91, 51, 0.4);
+            animation: fadeInUp 1.4s ease;
+        }
+
+        .speaker-badge {
+            background: var(--gold);
+            color: var(--dark-text);
+            padding: 6px 15px;
+            border-radius: 15px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .speaker-name {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin: 8px 0;
+        }
+
+        .venue {
+            font-size: 0.95em;
+            opacity: 0.95;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        /* Highlights */
+        .highlights {
+            padding: 20px;
+            animation: fadeInUp 1.6s ease;
+        }
+
+        .highlights-title {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 1.8em;
+            color: white;
+            text-align: center;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .highlight {
+            background: rgba(255,255,255,0.98);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .highlight:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .highlight-icon {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .highlight-text {
+            font-size: 0.85em;
+            font-weight: 600;
+            color: var(--dark-text);
+            line-height: 1.3;
+        }
+
+        /* RSVP Button */
+        .rsvp {
+            padding: 20px;
+            animation: fadeInUp 1.8s ease;
+        }
+
+        #rsvpButton {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--christmas-green), #28a745);
+            color: white;
+            font-size: 1.2em;
+            font-weight: 700;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(22, 91, 51, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #rsvpButton::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        #rsvpButton:hover:not(:disabled)::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        #rsvpButton:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(22, 91, 51, 0.5);
+        }
+
+        #rsvpButton:disabled {
+            background: linear-gradient(135deg, #6c757d, #5a6268);
+            cursor: not-allowed;
+        }
+
+        #rsvpButton span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(255,255,255,0.98);
+            margin: 0 20px 20px;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            animation: fadeInUp 2s ease;
+        }
+
+        .contact-label {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .contact-link {
+            color: var(--christmas-red);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05em;
+        }
+
+        .phone {
+            color: var(--christmas-green);
+            font-weight: 600;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Christmas Lights -->
+<div class="christmas-lights">
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+</div>
+
+<!-- Snowflakes -->
+<div id="snowflakes"></div>
+
+<div class="container">
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="christmas-tree">🎄</div>
+            <p class="tagline">The most joyful News, it's for everyone...</p>
+            <h1>Christmas Party</h1>
+            <p class="subtitle">✨ Celebrate the season with joy! ✨</p>
+        </div>
+    </div>
+
+    <!-- Countdown -->
+    <div class="countdown">
+        <div class="countdown-title">⏰ Event Starts In</div>
+        <div class="countdown-grid">
+            <div class="countdown-box">
+                <span class="countdown-num" id="days">00</span>
+                <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-box">
+                <span class="countdown-num" id="hours">00</span>
+                <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-box">
+                <span class="countdown-num" id="minutes">00</span>
+                <span class="countdown-label">Mins</span>
+            </div>
+            <div class="countdown-box">
+                <span class="countdown-num" id="seconds">00</span>
+                <span class="countdown-label">Secs</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Grid -->
+    <div class="info-grid">
+        <div class="info-card">
+            <div class="info-icon">📅</div>
+            <div class="info-label">Date</div>
+            <div class="info-value">Dec 17<br>2025</div>
+        </div>
+        <div class="info-card">
+            <div class="info-icon">🕔</div>
+            <div class="info-label">Time</div>
+            <div class="info-value">5:30 PM<br>Onwards</div>
+        </div>
+        <div class="info-card" style="grid-column: 1 / -1;">
+            <div class="info-icon">📍</div>
+            <div class="info-label">Venue</div>
+            <div class="info-value">DR. BR Ambedkar University<br>Nagavalli Girls Hostel - Study Room</div>
+        </div>
+    </div>
+
+    <!-- Speaker -->
+    <div class="speaker">
+        <span class="speaker-badge">⭐ Special Guest</span>
+        <div class="speaker-name">Sis Bharathi</div>
+        <div class="venue">
+            Join us for an inspiring message of hope and joy this Christmas season! 🙏✨
+        </div>
+    </div>
+
+    <!-- Highlights -->
+    <div class="highlights">
+        <h2 class="highlights-title">🎁 What Awaits You</h2>
+        <div class="highlights-grid">
+            <div class="highlight">
+                <div class="highlight-icon">🎵</div>
+                <div class="highlight-text">Christmas Music & Carols</div>
+            </div>
+            <div class="highlight">
+                <div class="highlight-icon">🎂</div>
+                <div class="highlight-text">Cake Cutting</div>
+            </div>
+            <div class="highlight">
+                <div class="highlight-icon">🎤</div>
+                <div class="highlight-text">Inspiring Message</div>
+            </div>
+            <div class="highlight">
+                <div class="highlight-icon">🍰</div>
+                <div class="highlight-text">Snacks & Refreshments</div>
+            </div>
+            <div class="highlight">
+                <div class="highlight-icon">🎁</div>
+                <div class="highlight-text">Surprise Gifts</div>
+            </div>
+            <div class="highlight">
+                <div class="highlight-icon">🤝</div>
+                <div class="highlight-text">Fun & Fellowship</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RSVP -->
+    <div class="rsvp">
+        <button id="rsvpButton" onclick="handleRSVP(event)">
+            <span><i class="fas fa-check-circle"></i> I Will Attend</span>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="contact-label">Questions or Need Help?</div>
+        <a href="#" class="contact-link" id="adminLink">
+            <i class="fas fa-user-circle"></i> Contact Anjali
+        </a>
+        <span class="phone" id="adminNumber">
+            <i class="fas fa-phone"></i> 9704472488
+        </span>
+        <div style="margin-top: 10px; font-size: 0.8em; color: #999;">
+            2nd MSc Chemistry
+        </div>
+    </div>
+</div>
+
+<script>
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDGS4dCnRS7ywHWRBjnaOpDmL28323flw8",
+      authDomain: "melamrahul.firebaseapp.com",
+      databaseURL: "https://melamrahul-default-rtdb.firebaseio.com",
+      projectId: "melamrahul",
+      storageBucket: "melamrahul.appspot.com",
+      messagingSenderId: "721100209859",
+      appId: "1:721100209859:web:52b007dd6becf1d54c6c76",
+      measurementId: "G-8H6Z66ESH"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    
+    const ATTENDANCE_KEY = 'attendance_status_2025';
+    const DB_PATH = 'party_attendance/';
+    const BUTTON = document.getElementById('rsvpButton');
+
+    // Snowflakes
+    function createSnowflakes() {
+        const container = document.getElementById('snowflakes');
+        for (let i = 0; i < 40; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.innerHTML = ['❄', '❅', '❆'][Math.floor(Math.random() * 3)];
+            snowflake.style.left = Math.random() * 100 + '%';
+            snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            snowflake.style.animationDelay = Math.random() * 5 + 's';
+            container.appendChild(snowflake);
+        }
+    }
+
+    // Countdown
+    function updateCountdown() {
+        const eventDate = new Date('2025-12-17T17:30:00').getTime();
+        const now = new Date().getTime();
+        const distance = eventDate - now;
+
+        if (distance > 0) {
+            document.getElementById('days').textContent = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+            document.getElementById('hours').textContent = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+        } else {
+            document.querySelector('.countdown-grid').innerHTML = '<div style="grid-column: 1/-1; font-size: 1.3em; color: var(--christmas-red); font-weight: 700;">🎉 Event is Live! 🎉</div>';
+        }
+    }
+
+    window.onload = function() {
+        createSnowflakes();
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        if (localStorage.getItem(ATTENDANCE_KEY) === 'confirmed') {
+            BUTTON.disabled = true;
+            BUTTON.innerHTML = '<span><i class="fas fa-check-circle"></i> See You There! 🎉</span>';
+        }
+    };
+
+    function handleRSVP(event) {
+        event.preventDefault();
+        if (BUTTON.disabled || localStorage.getItem(ATTENDANCE_KEY) === 'confirmed') return;
+
+        BUTTON.innerHTML = '<span><span class="loading"></span> Confirming...</span>';
+        BUTTON.disabled = true;
+
+        const deviceId = getDeviceId();
+        const data = {
+            timestamp: new Date().toISOString(),
+            status: 'Attending',
+            userAgent: navigator.userAgent
+        };
+
+        db.ref(DB_PATH + deviceId).set(data)
+            .then(() => {
+                localStorage.setItem(ATTENDANCE_KEY, 'confirmed');
+                BUTTON.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+                BUTTON.innerHTML = '<span><i class="fas fa-check-circle"></i> See You There! 🎉</span>';
+                setTimeout(() => {
+                    alert('🎉 Awesome! Your attendance is confirmed!\n\nSee you on December 17th at 5:30 PM! ✨');
+                }, 300);
+            })
+            .catch((error) => {
+                BUTTON.disabled = false;
+                BUTTON.innerHTML = '<span><i class="fas fa-check-circle"></i> I Will Attend</span>';
+                alert("❌ Error: " + error.message);
+            });
+    }
+
+    function getDeviceId() {
+        let id = localStorage.getItem('party_device_id');
+        if (!id) {
+            id = 'device_' + Math.random().toString(36).substr(2, 9) + Date.now();
+            localStorage.setItem('party_device_id', id);
+        }
+        return id;
+    }
+
+    // Admin
+    const SECRET_CODE = "anjali123";
+    document.getElementById('adminLink').addEventListener('click', (e) => {
+        e.preventDefault();
+        const pwd = prompt("🔐 Enter admin code:");
+        if (pwd === SECRET_CODE) {
+            db.ref(DB_PATH).once('value').then((snap) => {
+                alert(`🎉 Total Confirmed: ${snap.numChildren()} students`);
+            });
+        } else if (pwd !== null) {
+            alert("❌ Incorrect code!");
+            window.location.href = 'tel:9704472488';
+        }
+    });
+</script>
+
+</body>
+</html>
