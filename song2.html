@@ -124,25 +124,36 @@ body{
 const audio = document.getElementById('audio');
 const eqBars = document.querySelectorAll('.eq-bar');
 
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-const audioCtx = new AudioContext();
-const source = audioCtx.createMediaElementSource(audio);
-const analyser = audioCtx.createAnalyser();
+let audioCtx, analyser, source, dataArray;
+let eqRunning = false;
 
-analyser.fftSize = 64;
-source.connect(analyser);
-analyser.connect(audioCtx.destination);
+function initEQ() {
+  if (audioCtx) return; // already initialized
 
-const dataArray = new Uint8Array(analyser.frequencyBinCount);
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  audioCtx = new AudioContext();
 
-function animateEQ(){
+  source = audioCtx.createMediaElementSource(audio);
+  analyser = audioCtx.createAnalyser();
+  analyser.fftSize = 64;
+
+  source.connect(analyser);
+  analyser.connect(audioCtx.destination);
+
+  dataArray = new Uint8Array(analyser.frequencyBinCount);
+}
+
+function animateEQ() {
+  if (!analyser) return;
+
   analyser.getByteFrequencyData(dataArray);
-  eqBars.forEach((bar,i)=>{
-    bar.style.height = Math.max(10, dataArray[i]/2) + '%';
+  eqBars.forEach((bar, i) => {
+    const v = dataArray[i] || 0;
+    bar.style.height = Math.max(10, v / 2) + '%';
   });
+
   requestAnimationFrame(animateEQ);
 }
-animateEQ();
 
 /* ===== YOUR EXISTING PLAYER LOGIC ===== */
 let playing=false,current=0,activeTab='audio';
@@ -168,14 +179,26 @@ function trackHTML(t,i,type){
     <div class="track-name">${t.name}</div>
   </div>`;
 }
-function play(i,tab){
-  current=i;activeTab=tab;
-  audio.src=data[tab][i].url;
-  audio.play();playing=true;
-  playIcon.className='fas fa-pause';
-  nowPlaying.textContent=data[tab][i].name;
-  nowPlayingType.textContent=tab;
-}
+function play(i, tab) {
+  current = i;
+  activeTab = tab;
+
+  initEQ();               // 🔥 initialize EQ
+  audioCtx.resume();      // 🔥 unlock audio context
+
+  audio.src = data[tab][i].url;
+  audio.play();
+  playing = true;
+
+  if (!eqRunning) {
+    animateEQ();          // 🔥 start animation once
+    eqRunning = true;
+  }
+
+  playIcon.className = 'fas fa-pause';
+  nowPlaying.textContent = data[tab][i].name;
+  nowPlayingType.textContent = tab;
+                                                        }
 function toggle(){
   if(!audio.src)return;
   playing?audio.pause():audio.play();
