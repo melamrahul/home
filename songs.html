@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>House of Prayer Christmas Songs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: #1a1a2e;
@@ -20,6 +23,7 @@
       padding: 10px;
       min-height: 100vh;
     }
+
     .player-container {
       background: #16213e;
       border-radius: 16px;
@@ -29,6 +33,7 @@
       padding: 24px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     }
+
     .tabs {
       display: flex;
       gap: 8px;
@@ -37,6 +42,7 @@
       border: 1.5px dashed white;
       margin-bottom: 24px;
     }
+
     .tab {
       flex: 1;
       padding: 10px;
@@ -52,11 +58,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 6px;
     }
+
     .tab.active {
       background: #e94560;
       color: #fff;
     }
+
     .playlist {
       padding-top: 0.6rem;
       border: 1.5px dashed white;
@@ -65,6 +74,7 @@
       overflow-y: auto;
       margin-bottom: 24px;
     }
+
     .track {
       display: flex;
       align-items: center;
@@ -76,12 +86,15 @@
       transition: background 0.2s;
       min-height: 44px;
     }
+
     .track:hover {
       background: #0f1624;
     }
+
     .track.active {
       background: rgba(233, 69, 96, 0.2);
     }
+
     .track-num {
       width: 24px;
       height: 24px;
@@ -93,12 +106,15 @@
       font-size: 14px;
       margin-right: 12px;
     }
+
     .track.active .track-num {
       background: #e94560;
     }
+
     .track-name {
       font-size: 16px;
     }
+
     .controls button {
       background: transparent;
       border: 1px solid #334155;
@@ -114,19 +130,23 @@
       font-size: 1.6rem;
       padding-bottom: 0.8rem;
     }
+
     .now-playing {
       text-align: center;
       margin-bottom: 20px;
     }
+
     .now-playing-title {
       font-size: 18px;
       font-weight: 500;
       margin-bottom: 4px;
     }
+
     .now-playing-type {
       font-size: 14px;
       color: #7f8c9f;
     }
+
     .progress-bar {
       width: 100%;
       height: 6px;
@@ -135,12 +155,14 @@
       cursor: pointer;
       margin-bottom: 8px;
     }
+
     .progress {
       height: 100%;
       background: #e94560;
       border-radius: 3px;
       width: 0%;
     }
+
     .time {
       display: flex;
       justify-content: space-between;
@@ -148,6 +170,7 @@
       color: #7f8c9f;
       margin-bottom: 20px;
     }
+
     .buttons {
       display: flex;
       justify-content: center;
@@ -155,6 +178,7 @@
       gap: 20px;
       margin-bottom: 20px;
     }
+
     .btn {
       background: none;
       border: none;
@@ -170,9 +194,11 @@
       align-items: center;
       justify-content: center;
     }
+
     .btn:hover {
       opacity: 1;
     }
+
     .btn-play {
       width: 60px;
       height: 60px;
@@ -184,17 +210,21 @@
       opacity: 1;
       font-size: 24px;
     }
+
     .btn-play:hover {
       background: #d63851;
     }
+
     .volume-control {
       display: flex;
       align-items: center;
       gap: 12px;
     }
+
     .volume-icon {
       font-size: 20px;
     }
+
     .volume-slider {
       flex: 1;
       height: 6px;
@@ -203,6 +233,7 @@
       border-radius: 3px;
       outline: none;
     }
+
     .volume-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
       width: 16px;
@@ -211,6 +242,7 @@
       border-radius: 50%;
       cursor: pointer;
     }
+
     .volume-slider::-moz-range-thumb {
       width: 16px;
       height: 16px;
@@ -219,75 +251,95 @@
       cursor: pointer;
       border: none;
     }
+
     .playlist::-webkit-scrollbar {
       width: 6px;
     }
+
     .playlist::-webkit-scrollbar-track {
       background: transparent;
     }
+
     .playlist::-webkit-scrollbar-thumb {
       background: #0f1624;
       border-radius: 3px;
     }
+
     .hidden {
       display: none;
     }
+
     @media (max-width: 600px) {
       body {
         padding: 5px;
       }
+
       .player-container {
         padding: 20px;
         border-radius: 12px;
         width: 100%;
         max-width: none;
       }
+
       .tabs {
         gap: 4px;
         padding: 0.25rem;
       }
+
       .tab {
         padding: 8px;
         font-size: 14px;
         min-height: 44px;
+        gap: 4px;
       }
+
       .playlist {
         max-height: 40vh;
         margin-bottom: 16px;
       }
+
       .track {
         padding: 10px;
         min-height: 48px;
       }
+
       .track-name {
         font-size: 15px;
       }
+
       .now-playing-title {
         font-size: 16px;
       }
+
       .now-playing-type {
         font-size: 13px;
       }
+
       .time {
         font-size: 13px;
       }
+
       .buttons {
         gap: 16px;
       }
+
       .btn {
         font-size: 24px;
         padding: 10px;
         min-width: 48px;
         min-height: 48px;
       }
+
       .btn-play {
         width: 56px;
         height: 56px;
         font-size: 20px;
       }
+
       .volume-icon {
         font-size: 18px;
       }
+
       .volume-slider::-webkit-slider-thumb,
       .volume-slider::-moz-range-thumb {
         width: 14px;
@@ -296,11 +348,12 @@
     }
   </style>
 </head>
+
 <body>
   <div class="player-container">
     <div class="tabs">
-      <button class="tab active" onclick="switchTab('audio')">Audio</button>
-      <button class="tab" onclick="switchTab('tracks')">Tracks</button>
+      <button class="tab active" onclick="switchTab('audio')"><i class="fas fa-music"></i> Audio</button>
+      <button class="tab" onclick="switchTab('tracks')"><i class="fas fa-list"></i> Tracks</button>
     </div>
     <div class="playlist" id="audioList"></div>
     <div class="playlist hidden" id="tracksList"></div>
@@ -317,12 +370,12 @@
         <span id="duration">0:00</span>
       </div>
       <div class="buttons">
-        <button class="btn" onclick="prev()">⏮</button>
-        <button class="btn btn-play" onclick="toggle()">▶</button>
-        <button class="btn" onclick="next()">⏭</button>
+        <button class="btn" onclick="prev()"><i class="fas fa-step-backward"></i></button>
+        <button class="btn btn-play" onclick="toggle()"><i class="fa-solid fa-play" id="playIcon"></i></button>
+        <button class="btn" onclick="next()"><i class="fas fa-step-forward"></i></button>
       </div>
       <div class="volume-control">
-        <span class="volume-icon">🔊</span>
+        <i class="fas fa-volume-up volume-icon" id="volumeIcon"></i>
         <input type="range" class="volume-slider" min="0" max="100" value="100" oninput="setVolume(this.value)">
       </div>
     </div>
@@ -393,14 +446,17 @@
 
     function toggle() {
       if (!audio.src) return;
+      const playIcon = document.getElementById('playIcon');
       if (playing) {
         audio.pause();
         playing = false;
-        document.querySelector('.btn-play').innerHTML = '▶';
+        playIcon.classList.remove('fa-solid fa-pause');
+        playIcon.classList.add('fa-solid fa-play');
       } else {
         audio.play();
         playing = true;
-        document.querySelector('.btn-play').innerHTML = '⏸';
+        playIcon.classList.remove(' fa-solid fa-play');
+        playIcon.classList.add('fa-solid fa-pause');
       }
     }
 
@@ -451,6 +507,7 @@
     render();
     audio.volume = 0.7;
   </script>
- 
+
 </body>
+
 </html>
