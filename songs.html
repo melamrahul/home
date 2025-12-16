@@ -439,7 +439,8 @@
       audio.src = track.url;
       audio.play();
       playing = true;
-      document.querySelector('.btn-play').innerHTML = '⏸';
+      const icon = document.getElementById('playIcon');
+      icon.classList.replace('fa-play', 'fa-pause');
       document.getElementById('nowPlaying').textContent = track.name;
       document.getElementById('nowPlayingType').textContent = tab === 'audio' ? 'Audio' : 'Track';
       updateActive();
@@ -451,13 +452,11 @@
       if (playing) {
         audio.pause();
         playing = false;
-        playIcon.classList.remove('fa-solid fa-pause');
-        playIcon.classList.add('fa-solid fa-play');
+        playIcon.classList.replace('fa-pause', 'fa-play');
       } else {
         audio.play();
         playing = true;
-        playIcon.classList.remove('fa-solid fa-play');
-        playIcon.classList.add('fa-solid fa-pause');
+        playIcon.classList.replace('fa-play', 'fa-pause');
       }
     }
 
