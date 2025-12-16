@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>House of Prayer Christmas Songs</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #1a1a2e;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+    }
+
+    .player-container {
+      background: #16213e;
+      border-radius: 16px;
+      border: 1.5px dashed white;
+      width: 95%;
+      max-width: 500px;
+      padding: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      border-radius: 1rem;
+      padding: 0.5rem;
+      border: 1.5px dashed white;
+      margin-bottom: 24px;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 7px;
+      background: #0f1624;
+      border: none;
+      border-radius: 8px;
+      color: #7f8c9f;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .tab.active {
+      background: #e94560;
+      color: #fff;
+    }
+
+    .playlist {
+      padding-top: 0.6rem;
+      border: 1.5px dashed white;
+      border-radius: 1rem;
+      max-height: 50px;
+      overflow-y: auto;
+      margin-bottom: 24px;
+    }
+
+    .track {
+      display: flex;
+      align-items: center;
+      padding: 5px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      padding-left: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .track:hover {
+      background: #0f1624;
+    }
+
+    .track.active {
+      background: rgba(233, 69, 96, 0.2);
+    }
+
+    .track-num {
+      width: 20px;
+      height: 20px;
+      background: #0f1624;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      margin-right: 12px;
+    }
+
+    .track.active .track-num {
+      background: #e94560;
+    }
+
+    .track-name {
+      font-size: 14px;
+    }
+
+    .controls button {
+      background: transparent;
+      border: 1px solid #334155;
+      color: var(--text);
+      border-radius: 8px;
+      width: 64px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 6px;
+      cursor: pointer;
+      font-size: 1.6rem;
+      padding-bottom: 0.8rem;
+    }
+
+
+    .now-playing {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .now-playing-title {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .now-playing-type {
+      font-size: 13px;
+      color: #7f8c9f;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #0f1624;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-bottom: 8px;
+    }
+
+    .progress {
+      height: 100%;
+      background: #e94560;
+      border-radius: 3px;
+      width: 0%;
+    }
+
+    .time {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #7f8c9f;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      font-size: 24px;
+      padding: 8px;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .btn:hover {
+      opacity: 1;
+    }
+
+    .btn-play {
+      width: 52px;
+      height: 52px;
+      background: #e94560;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+    }
+
+    .btn-play:hover {
+      background: #d63851;
+    }
+
+    .volume-control {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .volume-icon {
+      font-size: 18px;
+    }
+
+    .volume-slider {
+      flex: 1;
+      height: 6px;
+      -webkit-appearance: none;
+      background: #0f1624;
+      border-radius: 3px;
+      outline: none;
+    }
+
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      background: #e94560;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .volume-slider::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      background: #e94560;
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+    }
+
+    .playlist::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .playlist::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .playlist::-webkit-scrollbar-thumb {
+      background: #0f1624;
+      border-radius: 3px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .player-container {
+        padding: 20px;
+      }
+
+      .playlist {
+        max-height: 280px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="player-container">
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('audio')">Audio</button>
+      <button class="tab" onclick="switchTab('tracks')">Tracks</button>
+    </div>
+
+    <div class="playlist" id="audioList"></div>
+    <div class="playlist hidden" id="tracksList"></div>
+
+    <div class="controls">
+      <div class="now-playing">
+        <div class="now-playing-title" id="nowPlaying">Select a song</div>
+        <div class="now-playing-type" id="nowPlayingType">—</div>
+      </div>
+
+      <div class="progress-bar" onclick="seek(event)">
+        <div class="progress" id="progress"></div>
+      </div>
+
+      <div class="time">
+        <span id="currentTime">0:00</span>
+        <span id="duration">0:00</span>
+      </div>
+
+      <div class="buttons">
+        <button class="btn" onclick="prev()">⏮</button>
+        <button class="btn btn-play" onclick="toggle()">▶</button>
+        <button class="btn" onclick="next()">⏭</button>
+      </div>
+
+      <div class="volume-control">
+        <span class="volume-icon">🔊</span>
+        <input type="range" class="volume-slider" min="0" max="100" value="100" oninput="setVolume(this.value)">
+      </div>
+    </div>
+  </div>
+
+  <audio id="audio"></audio>
+
+  <script>
+    const audio = document.getElementById('audio');
+    let playing = false;
+    let current = 0;
+    let activeTab = 'audio';
+
+    const data = {
+      audio: [
+        { name: 'అందాల తార', url: 'https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/temp-audios/%E0%B0%85%E0%B0%82%E0%B0%A6%E0%B0%BE%E0%B0%B2%20%E0%B0%A4%E0%B0%BE%E0%B0%B0_Audio.mp3' },
+        { name: 'జన్మించినాడు శ్రీ యేసు', url: 'https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/temp-audios/%E0%B0%B0%E0%B1%87%E0%B0%A1%E0%B1%81%20%E0%B0%A8%E0%B1%87%E0%B0%A1%E0%B1%81%20%E0%B0%9C%E0%B0%A8%E0%B0%BF%E0%B0%AF%E0%B0%BF%E0%B0%82%E0%B0%9A%E0%B0%BF%E0%B0%A8%E0%B0%BE%E0%B0%A1%E0%B1%81_Audio.mp3' },
+        { name: 'వెలసెనులే గగనాన', url: 'https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/temp-audios/%E0%B0%B5%E0%B1%86%E0%B0%B2%E0%B0%B8%E0%B1%86%E0%B0%A8%E0%B1%81%E0%B0%B2%E0%B1%87%20%E0%B0%97%E0%B0%97%E0%B0%A8%E0%B0%BE%E0%B0%A8_Audio.mp3' },
+        { name: 'లోకాలనేలే రక్షకుడు', url: 'https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/temp-audios/%E0%B0%B2%E0%B1%8B%E0%B0%95%E0%B0%BE%E0%B0%B2%E0%B0%A8%E0%B1%87%E0%B0%B2%E0%B1%87%20%E0%B0%B0%E0%B0%95%E0%B1%8D%E0%B0%B7%E0%B0%95%E0%B1%81%E0%B0%A1%E0%B1%81%20(272)_Audio.mp3' },
+        { name: 'కన్య మరియ గర్భము', url: 'https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/temp-audios/%E0%B0%95%E0%B0%A8%E0%B1%8D%E0%B0%AF%20%E0%B0%AE%E0%B0%B0%E0%B0%BF%E0%B0%AF%20%E0%B0%97%E0%B0%B0%E0%B1%8D%E0%B0%AD%E0%B0%AE%E0%B1%81%E0%B0%A8%E0%B1%81%E0%B0%82%E0%B0%A1%E0%B0%BF%20(3)_Audio.mp3' },
+        { name: 'Joy to the world', url: 'https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/temp-audios/Joy%20to%20the%20world%20(144)_Audio.mp3' }
+      ],
+      tracks: [
+        { name: 'అందాల తార', url: 'https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/temp-tracks/%E0%B0%85%E0%B0%82%E0%B0%A6%E0%B0%BE%E0%B0%B2%20%E0%B0%A4%E0%B0%BE%E0%B0%B0_Track.mp3' },
+        { name: 'జన్మించినాడు శ్రీ యేసు', url: 'https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/temp-tracks/%E0%B0%B0%E0%B1%87%E0%B0%A1%E0%B1%81%20%E0%B0%A8%E0%B1%87%E0%B0%A1%E0%B1%81%20%E0%B0%9C%E0%B0%A8%E0%B0%BF%E0%B0%AF%E0%B0%BF%E0%B0%82%E0%B0%9A%E0%B0%BF%E0%B0%A8%E0%B0%BE%E0%B0%A1%E0%B1%81_Track.mp3' },
+        { name: 'వెలసెనులే గగనాన', url: 'https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/temp-tracks/%E0%B0%B5%E0%B1%86%E0%B0%B2%E0%B0%B8%E0%B1%86%E0%B0%A8%E0%B1%81%E0%B0%B2%E0%B1%87%20%E0%B0%97%E0%B0%97%E0%B0%A8%E0%B0%BE%E0%B0%A8_Track.mp3' },
+        { name: 'లోకాలనేలే రక్షకుడు', url: 'https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/temp-tracks/%E0%B0%B2%E0%B1%8B%E0%B0%95%E0%B0%BE%E0%B0%B2%E0%B0%A8%E0%B1%87%E0%B0%B2%E0%B1%87%20%E0%B0%B0%E0%B0%95%E0%B1%8D%E0%B0%B7%E0%B0%95%E0%B1%81%E0%B0%A1%E0%B1%81%20(272)_Track.mp3' },
+        { name: 'కన్య మరియ గర్భము', url: 'https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/temp-tracks/%E0%B0%95%E0%B0%A8%E0%B1%8D%E0%B0%AF%20%E0%B0%AE%E0%B0%B0%E0%B0%BF%E0%B0%AF%20%E0%B0%97%E0%B0%B0%E0%B1%8D%E0%B0%AD%E0%B0%AE%E0%B1%81%E0%B0%A8%E0%B1%81%E0%B0%82%E0%B0%A1%E0%B0%BF%20(3)_Track.mp3' },
+        { name: 'Joy to the world', url: 'https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/temp-tracks/Joy%20to%20the%20world%20(144)_Track.mp3' }
+      ]
+    };
+
+    function render() {
+      document.getElementById('audioList').innerHTML = data.audio.map((t, i) =>
+        `<div class="track" onclick="play(${i}, 'audio')">
+                    <div class="track-num">${i + 1}</div>
+                    <div class="track-name">${t.name}</div>
+                </div>`
+      ).join('');
+
+      document.getElementById('tracksList').innerHTML = data.tracks.map((t, i) =>
+        `<div class="track" onclick="play(${i}, 'tracks')">
+                    <div class="track-num">${i + 1}</div>
+                    <div class="track-name">${t.name}</div>
+                </div>`
+      ).join('');
+    }
+
+    function switchTab(tab) {
+      activeTab = tab;
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById('audioList').classList.toggle('hidden', tab !== 'audio');
+      document.getElementById('tracksList').classList.toggle('hidden', tab !== 'tracks');
+    }
+
+    function play(index, tab) {
+      current = index;
+      activeTab = tab;
+      const track = data[tab][index];
+      audio.src = track.url;
+      audio.play();
+      playing = true;
+      document.querySelector('.btn-play').innerHTML = '⏸';
+      document.getElementById('nowPlaying').textContent = track.name;
+      document.getElementById('nowPlayingType').textContent = tab === 'audio' ? 'Audio' : 'Track';
+      updateActive();
+    }
+
+    function toggle() {
+      if (!audio.src) return;
+      if (playing) {
+        audio.pause();
+        playing = false;
+        document.querySelector('.btn-play').innerHTML = '▶';
+      } else {
+        audio.play();
+        playing = true;
+        document.querySelector('.btn-play').innerHTML = '⏸';
+      }
+    }
+
+    function prev() {
+      if (current > 0) play(current - 1, activeTab);
+    }
+
+    function next() {
+      if (current < data[activeTab].length - 1) play(current + 1, activeTab);
+    }
+
+    function seek(e) {
+      if (audio.duration) {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const percent = x / rect.width;
+        audio.currentTime = audio.duration * percent;
+      }
+    }
+
+    function setVolume(val) {
+      audio.volume = val / 100;
+    }
+
+    function updateActive() {
+      document.querySelectorAll('.track').forEach(t => t.classList.remove('active'));
+      const list = activeTab === 'audio' ? 'audioList' : 'tracksList';
+      document.getElementById(list).children[current].classList.add('active');
+    }
+
+    function formatTime(sec) {
+      if (isNaN(sec)) return '0:00';
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m}:${s.toString().padStart(2, '0')}`;
+    }
+
+    audio.addEventListener('timeupdate', () => {
+      if (audio.duration) {
+        document.getElementById('progress').style.width = (audio.currentTime / audio.duration * 100) + '%';
+        document.getElementById('currentTime').textContent = formatTime(audio.currentTime);
+        document.getElementById('duration').textContent = formatTime(audio.duration);
+      }
+    });
+
+    audio.addEventListener('ended', next);
+
+    render();
+    audio.volume = 0.7;
+  </script>
+</body>
+
+</html>
