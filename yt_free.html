@@ -253,7 +253,7 @@ function attachSecret(){
 
   const expireTime = Date.now() + minutes * 60 * 1000;
   const encodedToken = encodeToken(expireTime);
-  const newLink = `${location.origin}${location.pathname}?mrahul.eu@gmail=${encodedToken}`;
+  const newLink = `${location.origin}${location.pathname}?rahul=${encodedToken}`;
 
   navigator.clipboard.writeText(newLink);
 
@@ -264,14 +264,21 @@ function attachSecret(){
 <!-- ⏳ EXPIRATION LOGIC -->
 <script>
 const params = new URLSearchParams(location.search);
-const token = params.get("mrahul.eu@gmail");
+const token = params.get("rahul");
 const container = document.getElementById("pageContent");
 
 function showExpired(){
   container.innerHTML = `
     <div class="expired-box">
       <div class="expired-title" id="expiredTrigger">⏳️ Link expired</div>
-      <p>Please contact administrator.</p>
+      <p>
+       Please contact admin <strong>Rahul</strong>
+        <a href="https://wa.me/919347450441?text=Hello%20Rahul,%20Please%20may%20I%20get%20the%20access%20to%20the%20YouTube%20Premium%20link"
+         target="_blank"
+         style="color:#197afe;font-weight:bold;text-decoration:none;">
+        Click here.
+      </a>
+     </p>
     </div>
   `;
   
