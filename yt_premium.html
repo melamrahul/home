@@ -253,7 +253,7 @@ function attachSecret(){
 
   const expireTime = Date.now() + minutes * 60 * 1000;
   const encodedToken = encodeToken(expireTime);
-  const newLink = `${location.origin}${location.pathname}?token=${encodedToken}`;
+  const newLink = `${location.origin}${location.pathname}?mrahul.eu@gmail=${encodedToken}`;
 
   navigator.clipboard.writeText(newLink);
 
@@ -264,7 +264,7 @@ function attachSecret(){
 <!-- ⏳ EXPIRATION LOGIC -->
 <script>
 const params = new URLSearchParams(location.search);
-const token = params.get("token");
+const token = params.get("mrahul.eu@gmail");
 const container = document.getElementById("pageContent");
 
 function showExpired(){
