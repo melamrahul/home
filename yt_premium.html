@@ -100,7 +100,7 @@ body{
 .expired-title{
   font-size:2em;
   font-weight:700;
-  cursor:default;
+  cursor:pointer;
 }
 
 @media(max-width:600px){
@@ -172,53 +172,135 @@ Designed by <strong style="color:#197afe;">Rahul</strong>
 
 </div>
 
+<!-- 🔐 ENCODING/DECODING FUNCTIONS -->
+<script>
+// Generate random string for API-key-like appearance
+function generateRandomString(length) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for(let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+// Encode timestamp to API-key-like format
+function encodeToken(timestamp) {
+  const str = timestamp.toString();
+  let encoded = '';
+  
+  // Convert each digit to a unique 3-character code
+  const digitMap = {
+    '0': 'aBc', '1': 'DeF', '2': 'gHi', '3': 'JkL', '4': 'mNo',
+    '5': 'PqR', '6': 'sTu', '7': 'VwX', '8': 'yZa', '9': 'BcD'
+  };
+  
+  for(let i = 0; i < str.length; i++) {
+    encoded += digitMap[str[i]];
+  }
+  
+  // Add random prefix and suffix to make it look like an API key
+  const prefix = generateRandomString(4);
+  const suffix = generateRandomString(6);
+  
+  // Format: prefix-encoded-suffix (looks like: Xy4z-aBcDeF...-A9bK3m)
+  return `${prefix}-${encoded}-${suffix}`;
+}
+
+// Decode API-key-like token back to timestamp
+function decodeToken(token) {
+  try {
+    // Remove prefix and suffix (everything before first dash and after last dash)
+    const parts = token.split('-');
+    if(parts.length !== 3) return null;
+    
+    const encoded = parts[1]; // Middle part contains the actual data
+    
+    const digitMap = {
+      'aBc': '0', 'DeF': '1', 'gHi': '2', 'JkL': '3', 'mNo': '4',
+      'PqR': '5', 'sTu': '6', 'VwX': '7', 'yZa': '8', 'BcD': '9'
+    };
+    
+    let decoded = '';
+    
+    // Process in chunks of 3 characters
+    for(let i = 0; i < encoded.length; i += 3) {
+      const chunk = encoded.substr(i, 3);
+      if(digitMap[chunk]) {
+        decoded += digitMap[chunk];
+      } else {
+        return null; // Invalid token
+      }
+    }
+    
+    return decoded ? parseInt(decoded) : null;
+  } catch(e) {
+    return null;
+  }
+}
+</script>
+
+<!-- 🔐 SECRET GENERATOR FUNCTION -->
+<script>
+const PASSWORD = "rahul123"; // change this
+
+function attachSecret(){
+  const pass = prompt("Password:");
+  if(pass !== PASSWORD) return;
+
+  const minutes = prompt("Expire after minutes:");
+  if(!minutes || isNaN(minutes)) return;
+
+  const expireTime = Date.now() + minutes * 60 * 1000;
+  const encodedToken = encodeToken(expireTime);
+  const newLink = `${location.origin}${location.pathname}?token=${encodedToken}`;
+
+  navigator.clipboard.writeText(newLink);
+
+  alert("New expiring link copied:\n\n" + newLink);
+}
+</script>
+
 <!-- ⏳ EXPIRATION LOGIC -->
 <script>
 const params = new URLSearchParams(location.search);
-const expire = params.get("expire");
+const token = params.get("token");
 const container = document.getElementById("pageContent");
 
 function showExpired(){
   container.innerHTML = `
     <div class="expired-box">
-      <div class="expired-title" id="secretTrigger">Link expired</div>
+      <div class="expired-title" id="expiredTrigger">⏳️ Link expired</div>
       <p>Please contact administrator.</p>
     </div>
   `;
-  attachSecret();
+  
+  // Attach secret to expired page trigger (clicking on "Link expired" text)
+  const expiredTrigger = document.getElementById("expiredTrigger");
+  if(expiredTrigger){
+    expiredTrigger.addEventListener("click", attachSecret);
+  }
 }
 
-if(!expire || Date.now() > Number(expire)){
+// Check if token exists
+if(!token) {
+  // No token parameter = show expired page
   showExpired();
+} else {
+  // Token exists, decode and check expiration
+  const expireTime = decodeToken(token);
+  
+  if(!expireTime || Date.now() > expireTime) {
+    // Invalid token or expired
+    showExpired();
+  } else {
+    // Valid and not expired - attach secret to live page notice box
+    const importantBox = document.getElementById("importantBox");
+    if(importantBox){
+      importantBox.addEventListener("click", attachSecret);
+    }
+  }
 }
-</script>
-
-<!-- 🔐 SECRET GENERATOR (HIDDEN) -->
-<script>
-const PASSWORD = "rahul123"; // change this
-
-function attachSecret(){
-  const hidden = document.getElementById("secretTrigger");
-  if(!hidden) return;
-
-  hidden.addEventListener("click", () => {
-
-    const pass = prompt("Password:");
-    if(pass !== PASSWORD) return;
-
-    const minutes = prompt("Expire after minutes:");
-    if(!minutes || isNaN(minutes)) return;
-
-    const expireTime = Date.now() + minutes * 60 * 1000;
-    const newLink = `${location.origin}${location.pathname}?expire=${expireTime}`;
-
-    navigator.clipboard.writeText(newLink);
-
-    alert("New expiring link copied:\n\n" + newLink);
-  });
-}
-
-document.getElementById("importantBox").onclick = attachSecret;
 </script>
 
 </body>
