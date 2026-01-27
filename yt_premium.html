@@ -1,194 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Premium - By Rahul</title>
-    <meta content="description" name="YouTube Premium APKs - by Rahul. Download the latest versions of YouTube Premium, MicroG Service, and YouTube Music Premium APKs for enhanced features and ad-free experience." />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Premium - by Rahul</title>
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0a0a0a;
-            color: #ffffff;
-            line-height: 1.6;
-            padding: 40px 20px;
-        }
+<style>
+body{
+  font-family: system-ui, Arial, sans-serif;
+  margin:0;
+  padding:12px;
+  color:#333;
+  line-height:1.6;
+}
 
-        .container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
+.main-container{
+  max-width:650px;
+  margin:auto;
+}
 
-        .header {
-            margin-bottom: 40px;
-            border-bottom: 2px solid #ff0000;
-            padding-bottom: 20px;
-        }
+.header{
+  color:#D83B01;
+  padding:0px;
+  text-align:center;
+  border-radius:10px;
+  border:1.5px dashed #666;
+  margin-bottom:20px;
+}
 
-        .header h1 {
-            font-size: 32px;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-        }
+.step{
+  margin-bottom:25px;
+  padding:20px;
+  border:1px solid #666;
+  border-radius:6px;
+  box-shadow:0 2px 6px rgba(0,0,0,.06);
+}
 
-        .header p {
-            font-size: 14px;
-            color: #b3b3b3;
-        }
+.step-number{
+  background:white;
+  color:#D83B01;
+  padding:5px 8px;
+  border-radius:15%;
+  border:2px solid #D83B01;
+  font-weight:bold;
+  margin-right:10px;
+}
 
-        .download-section {
-            display: grid;
-            gap: 16px;
-            margin-bottom: 30px;
-        }
+.step-title{
+  font-size:1.2em;
+  font-weight:bold;
+  color:#D83B01;
+  margin-bottom:10px;
+}
 
-        .download-item {
-            background: #1a1a1a;
-            border: 1px solid #333333;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.step-content{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  font-size:medium;
+  color:#555;
+  flex-wrap:wrap;
+}
 
-        .download-info {
-            flex: 1;
-        }
+.step-text{
+  flex:1;
+  min-width:0;
+}
 
-        .download-info h3 {
-            font-size: 18px;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 4px;
-        }
+.download-btn{
+  padding:10px 22px;
+  background:#D83B01;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  border-radius:4px;
+  white-space:nowrap;
+}
 
-        .download-info p {
-            font-size: 13px;
-            color: #808080;
-        }
+.notice{
+  background:#fff3cd;
+  border-left:4px solid #ff9800;
+  padding:15px;
+  margin-bottom:25px;
+}
 
-        .version {
-            display: inline-block;
-            background: #ff0000;
-            color: #ffffff;
-            padding: 2px 10px;
-            font-size: 11px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+.success-container{
+  background:#4caf50;
+  color:white;
+  padding:18px;
+  text-align:center;
+  font-size:1.3em;
+  font-weight:bold;
+  border-radius:6px;
+}
 
-        .download-btn {
-            background: #ff0000;
-            color: #ffffff;
-            border: none;
-            padding: 10px 24px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+/* MOBILE FRIENDLY */
+@media(max-width:600px){
+  .download-btn{
+    width:100%;
+    text-align:center;
+  }
+}
 
-        .download-btn:active {
-            background: #cc0000;
-        }
-
-        .notice {
-            background: #1a1a1a;
-            border: 1px solid #ff0000;
-            border-left: 4px solid #ff0000;
-            padding: 20px;
-        }
-
-        .notice h4 {
-            font-size: 14px;
-            font-weight: 600;
-            color: #ff0000;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-
-        .notice ul {
-            list-style: none;
-            font-size: 13px;
-            color: #b3b3b3;
-        }
-
-        .notice ul li {
-            padding-left: 16px;
-            position: relative;
-            margin-bottom: 6px;
-        }
-
-        .notice ul li:before {
-            content: "►";
-            position: absolute;
-            left: 0;
-            color: #ff0000;
-            font-size: 10px;
-        }
-
-        @media (max-width: 600px) {
-            .download-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
-            }
-
-            .download-btn {
-                width: 100%;
-                text-align: center;
-            }
-        }
-    </style>
+@media (min-width:768px){
+  body{
+    display:flex;
+    justify-content:center;
+  }
+}
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>YouTube Premium</h1>
-            <p>Select and download your preferred version</p>
-        </div>
+<div class="main-container">
 
-        <div class="download-section">
-            <div class="download-item">
-                <div class="download-info">
-                    <span class="version">Youtube</span>
-                    <h3>YouTube Premium - APK</h3>
-                    <p>Most recent stable version with latest features</p>
-                </div>
-                <a href="https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/Youtube%20Premium/Youtube%20Premium.apk" class="download-btn" download>Download</a>
-            </div>
+<div class="header">
+  <h1>YouTube Premium</h1>
+</div>
 
-            <div class="download-item">
-                <div class="download-info">
-                    <span class="version">MicroG</span>
-                    <h3>MicroG Service - APK</h3>
-                    <p>Optimized build with specific compatibility</p>
-                </div>
-                <a href="https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/Youtube%20Premium/YT%20MicroG.apk" class="download-btn" download>Download</a>
-            </div>
+<div class="notice">
+<strong>⚠ Important:</strong> Must Install MicroG Service app for proper Integration.
+</div>
 
-            <div class="download-item">
-                <div class="download-info">
-                    <span class="version">YT Music</span>
-                    <h3>Youtube Music Premium - APK</h3>
-                    <p>Stable version for legacy device support</p>
-                </div>
-                <a href="https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/Youtube%20Premium/YT%20Music%20Premium.apk" class="download-btn" download>Download</a>
-            </div>
-        </div>
+<div class="step">
+  <div class="step-title">
+    <span class="step-number">1</span> Download YouTube Premium
+  </div>
+  <div class="step-content">
+    <div class="step-text">
+      Latest modded YouTube with premium features.
     </div>
+    <a class="download-btn" href="https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/Youtube%20Premium/Youtube%20Premium.apk" download>Download APK</a>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-title">
+    <span class="step-number">2</span> Download MicroG Service
+  </div>
+  <div class="step-content">
+    <div class="step-text">
+      Required for Google login support.
+    </div>
+    <a class="download-btn" href="https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/Youtube%20Premium/YT%20MicroG.apk" download>Download APK</a>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-title">
+    <span class="step-number">3</span> Download YouTube Music Premium
+  </div>
+  <div class="step-content">
+    <div class="step-text">
+      Premium YouTube Music app without ads.
+    </div>
+    <a class="download-btn" href="https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/Youtube%20Premium/YT%20Music%20Premium.apk" download>Download APK</a>
+  </div>
+</div><br>
+
+<div class="success-container">
+🎉 Enjoy Youtube Premium 🎉
+</div>
+
+<footer class="success-container" style="background-color: transparent; color: black; font-weight: 300;">
+Designed by <a href="#" style="text-decoration:none;font-weight:bold;color:#197afe;">Rahul</a>
+</footer>
+
+</div>
 </body>
 </html>
