@@ -21,7 +21,6 @@ body{
 
 .header{
   color:#D83B01;
-  padding:0px;
   text-align:center;
   border-radius:10px;
   border:1.5px dashed #666;
@@ -58,14 +57,12 @@ body{
   justify-content:space-between;
   align-items:center;
   gap:20px;
-  font-size:medium;
-  color:#555;
   flex-wrap:wrap;
+  color:#555;
 }
 
 .step-text{
   flex:1;
-  min-width:0;
 }
 
 .download-btn{
@@ -83,6 +80,7 @@ body{
   border-left:4px solid #ff9800;
   padding:15px;
   margin-bottom:25px;
+  cursor:pointer;
 }
 
 .success-container{
@@ -95,18 +93,10 @@ body{
   border-radius:6px;
 }
 
-/* MOBILE FRIENDLY */
 @media(max-width:600px){
   .download-btn{
     width:100%;
     text-align:center;
-  }
-}
-
-@media (min-width:768px){
-  body{
-    display:flex;
-    justify-content:center;
   }
 }
 </style>
@@ -119,7 +109,7 @@ body{
   <h1>YouTube Premium</h1>
 </div>
 
-<div class="notice">
+<div class="notice" id="importantBox">
 <strong>⚠ Important:</strong> Must Install MicroG Service app for proper Integration.
 </div>
 
@@ -128,10 +118,10 @@ body{
     <span class="step-number">1</span> Download YouTube Premium
   </div>
   <div class="step-content">
-    <div class="step-text">
-      Latest modded YouTube with premium features.
-    </div>
-    <a class="download-btn" href="https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/Youtube%20Premium/Youtube%20Premium.apk" download>Download APK</a>
+    <div class="step-text">Latest modded YouTube with premium features.</div>
+    <a class="download-btn" href="https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/Youtube%20Premium/Youtube%20Premium.apk" download>
+      Download APK
+    </a>
   </div>
 </div>
 
@@ -140,10 +130,10 @@ body{
     <span class="step-number">2</span> Download MicroG Service
   </div>
   <div class="step-content">
-    <div class="step-text">
-      Required for Google login support.
-    </div>
-    <a class="download-btn" href="https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/Youtube%20Premium/YT%20MicroG.apk" download>Download APK</a>
+    <div class="step-text">Required for Google login support.</div>
+    <a class="download-btn" href="https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/Youtube%20Premium/YT%20MicroG.apk" download>
+      Download APK
+    </a>
   </div>
 </div>
 
@@ -152,21 +142,72 @@ body{
     <span class="step-number">3</span> Download YouTube Music Premium
   </div>
   <div class="step-content">
-    <div class="step-text">
-      Premium YouTube Music app without ads.
-    </div>
-    <a class="download-btn" href="https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/Youtube%20Premium/YT%20Music%20Premium.apk" download>Download APK</a>
+    <div class="step-text">Premium YouTube Music app without ads.</div>
+    <a class="download-btn" href="https://pub-43e3b530db1540f4a16cdacc0e749843.r2.dev/Youtube%20Premium/YT%20Music%20Premium.apk" download>
+      Download APK
+    </a>
   </div>
-</div><br>
+</div>
+
+<br>
 
 <div class="success-container">
 🎉 Enjoy Youtube Premium 🎉
 </div>
 
-<footer class="success-container" style="background-color: transparent; color: black; font-weight: 300;">
-Designed by <a href="#" style="text-decoration:none;font-weight:bold;color:#197afe;">Rahul</a>
+<footer class="success-container" style="background:transparent;color:black;font-weight:300;">
+Designed by <strong style="color:#197afe;">Rahul</strong>
 </footer>
 
 </div>
+
+<!-- ⏳ EXPIRATION LOGIC -->
+<script>
+const params = new URLSearchParams(window.location.search);
+const expire = params.get("expire");
+
+function lockPage(){
+  document.body.innerHTML = `
+    <div style="text-align:center;margin-top:25vh;font-family:system-ui">
+      <h1>⏳ Link expired</h1>
+      <p>This access window has closed.</p>
+    </div>`;
+}
+
+// no expire parameter → block
+if(!expire){
+  lockPage();
+}else{
+  if(Date.now() > Number(expire)){
+    lockPage();
+  }
+}
+</script>
+
+<!-- 🔐 SECRET LINK GENERATOR -->
+<script>
+const PASSWORD = "rahul123"; // change this
+
+document.getElementById("importantBox").addEventListener("click", () => {
+
+  const pass = prompt("Enter password:");
+  if(pass !== PASSWORD){
+    alert("Wrong password");
+    return;
+  }
+
+  const minutes = prompt("Expire after how many minutes?");
+  if(!minutes || isNaN(minutes)) return;
+
+  const expireTime = Date.now() + minutes * 60 * 1000;
+
+  const newLink = `${location.origin}${location.pathname}?expire=${expireTime}`;
+
+  navigator.clipboard.writeText(newLink);
+
+  alert("Expirable link created & copied:\n\n" + newLink);
+});
+</script>
+
 </body>
 </html>
