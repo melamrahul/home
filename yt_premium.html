@@ -61,9 +61,7 @@ body{
   color:#555;
 }
 
-.step-text{
-  flex:1;
-}
+.step-text{ flex:1; }
 
 .download-btn{
   padding:10px 22px;
@@ -93,6 +91,18 @@ body{
   border-radius:6px;
 }
 
+.expired-box{
+  text-align:center;
+  margin-top:28vh;
+  user-select:none;
+}
+
+.expired-title{
+  font-size:2em;
+  font-weight:700;
+  cursor:default;
+}
+
 @media(max-width:600px){
   .download-btn{
     width:100%;
@@ -103,7 +113,8 @@ body{
 </head>
 
 <body>
-<div class="main-container">
+
+<div class="main-container" id="pageContent">
 
 <div class="header">
   <h1>YouTube Premium</h1>
@@ -163,50 +174,51 @@ Designed by <strong style="color:#197afe;">Rahul</strong>
 
 <!-- ⏳ EXPIRATION LOGIC -->
 <script>
-const params = new URLSearchParams(window.location.search);
+const params = new URLSearchParams(location.search);
 const expire = params.get("expire");
+const container = document.getElementById("pageContent");
 
-function lockPage(){
-  document.body.innerHTML = `
-    <div style="text-align:center;margin-top:25vh;font-family:system-ui">
-      <h1>⏳ Link expired</h1>
-      <p>This access window has closed.</p>
-    </div>`;
+function showExpired(){
+  container.innerHTML = `
+    <div class="expired-box">
+      <div class="expired-title" id="secretTrigger">Link expired</div>
+      <p>Please contact administrator.</p>
+    </div>
+  `;
+  attachSecret();
 }
 
-// no expire parameter → block
-if(!expire){
-  lockPage();
-}else{
-  if(Date.now() > Number(expire)){
-    lockPage();
-  }
+if(!expire || Date.now() > Number(expire)){
+  showExpired();
 }
 </script>
 
-<!-- 🔐 SECRET LINK GENERATOR -->
+<!-- 🔐 SECRET GENERATOR (HIDDEN) -->
 <script>
 const PASSWORD = "rahul123"; // change this
 
-document.getElementById("importantBox").addEventListener("click", () => {
+function attachSecret(){
+  const hidden = document.getElementById("secretTrigger");
+  if(!hidden) return;
 
-  const pass = prompt("Enter password:");
-  if(pass !== PASSWORD){
-    alert("Wrong password");
-    return;
-  }
+  hidden.addEventListener("click", () => {
 
-  const minutes = prompt("Expire after how many minutes?");
-  if(!minutes || isNaN(minutes)) return;
+    const pass = prompt("Password:");
+    if(pass !== PASSWORD) return;
 
-  const expireTime = Date.now() + minutes * 60 * 1000;
+    const minutes = prompt("Expire after minutes:");
+    if(!minutes || isNaN(minutes)) return;
 
-  const newLink = `${location.origin}${location.pathname}?expire=${expireTime}`;
+    const expireTime = Date.now() + minutes * 60 * 1000;
+    const newLink = `${location.origin}${location.pathname}?expire=${expireTime}`;
 
-  navigator.clipboard.writeText(newLink);
+    navigator.clipboard.writeText(newLink);
 
-  alert("Expirable link created & copied:\n\n" + newLink);
-});
+    alert("New expiring link copied:\n\n" + newLink);
+  });
+}
+
+document.getElementById("importantBox").onclick = attachSecret;
 </script>
 
 </body>
