@@ -2,7 +2,7 @@ Reference Video: https://www.youtube.com/watch?v=aqgHf1YfOEk
 
 
 
-1. Uninstall MS office from the Laptop
+1. Uninstall MS office from the Laptop. or remove every App related microsoft365/Office.
 2. Remove MS Office Folder from the Laptop.
 3. Search for "Office Deployment Tools"
 4. Open 1st Website and Click Download
